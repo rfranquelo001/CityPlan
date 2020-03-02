@@ -1,0 +1,61 @@
+@charset "UTF-8";
+/*Estilo pag opinion.html*/
+
+ 
+    /* Main Column */
+
+.container	h3{
+    padding: 0.5em;
+    text-align: left;
+    font-family: Roboto;
+    bold; 
+    color: #8610FD;  
+	font-size: 2rem;  
+}
+.container	.enunciado{
+        text-align: left;
+        font-family: Roboto;
+        margin-left: 1.25em; /*20px-- 1,25em*/
+        margin-right: 2.82em; /*45px-- 2.82em*/
+        }
+.container	.colMain{
+        width: 75%;
+        background-color: #b691dd;
+        opacity: 0.8;
+      	float:left;
+    }
+.container	.formulario{
+            font-family: Roboto;
+            text-align: left;
+            margin-left: 1.25em; /*20px-- 1,25em*/
+            margin-right: 2.82em; /*45px-- 2.82em*/
+            font-size: 1rem;
+    }
+.container .pregunta{
+        font-family: Roboto;
+        text-decoration: none;
+        padding:0.5em;
+    }
+
+.container .btnEnviar{
+	font-size: 1em;
+	margin-bottom:1em;
+	
+}
+.container .textoOpinion{
+	font-size:1rem;
+	
+}  
+    #message{
+    	opacity: 100%;
+    	background-color: white;
+    }
+.container .leftColumn{
+	align-self: auto;
+}
+
+  
+    
+    
+    
+    

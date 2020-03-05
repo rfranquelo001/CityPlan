@@ -1,0 +1,29 @@
+@charset "UTF-8";
+/*Table*/
+    .container .colMain .evento {
+    background-color: white;
+    box-shadow: 5px 10px purple;
+    width: 85%;
+    vertical-align: center;
+    border: 2px solid black;
+    font-size: 1rem;
+    }
+    .container .colMain .evento .dia{
+        background-color: white;   
+        padding: 10px;
+        width: 5px;
+        height: 5px;
+        text-align: center;
+        /*box-shadow: 5px 10px #888888;*/
+    }
+    .container .colMain .evento .info{
+        width: 15px;
+        height: 5px;
+        text-align: left;
+        background-color: white;
+        opacity: 0.3;
+        filter: alpha(opacity=30);
+    }  
+    .leftColumn{
+    justify-self: start;
+    }

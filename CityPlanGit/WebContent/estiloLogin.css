@@ -8,6 +8,7 @@ body {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 0.5em;
 	}
+
 .openLogin{
 	background-color: #8961AF;
 	color: white;
@@ -20,9 +21,9 @@ body {
 .formLogin{
 
 	display: none;
-  bottom: 0;
-  right: 15px;
-  z-index: 9;
+  	bottom: 0;
+ 	right: 1em;
+ 	/*z-index: 9;*/
 }
 .formLoginContainer{
 	max-width: 300px;
@@ -33,6 +34,10 @@ body {
 }
 .formLoginContainer h2{
 	color: #8961AF;	
+	
+}
+.formLoginContainer .tipoUsuario{
+	font-size: 0.7em;
 }
 
 /* Full-width input fields */
@@ -60,7 +65,7 @@ body {
   width: 100%;
   margin-top:10px;
   margin-bottom:10px;
-  opacity: 0.8;
+  opacity: 1.0;
 }
 .formLoginContainer .btnCancel{
 	background-color: #8961AF;
@@ -70,13 +75,13 @@ body {
   cursor: pointer;
   width: 100%;
   margin-bottom:10px;
-  opacity: 0.8;
+  opacity: 1.0;
 }
 
 
 /* Add some hover effects to buttons */
 .formLoginContainer .btn:hover, .open-button:hover {
-  opacity: 1;
+  background-color: #5a3c77;
 }
 
 

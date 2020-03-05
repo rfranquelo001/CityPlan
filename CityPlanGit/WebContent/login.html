@@ -25,7 +25,7 @@ function closeForm() {
 	<h2><b>¿Qué hacemos hoy?</b></h2>
 	<nav class="menu">
 			<ul>
-				<li><a href="http://cityplantit.byethost24.com/homeMenu.html">Home</a></li>
+				<li><a href="file:///home/raquel/Escritorio/STA-19-20/eclipse-workspace1920/CityPlanDynamic/WebContent/homeMenu.html">Home</a></li>
 				<li><a href="http://cityplantit.byethost24.com/agenda.html">Agenda</a></li>
 				<li><a href="http://cityplantit.byethost24.com/opinion.html">Opinión</a></li>
 				<li><a href="http://cityplantit.byethost24.com/mapa.html">Mapa</a></li>
@@ -40,11 +40,17 @@ function closeForm() {
 	<div class="formLogin" id="formLogin">
 		 <form action="/action_page.php" class="formLoginContainer">
 		 <h2><b>Log In</b></h2>
+		 <label for="tipoUsuario"><b>Tipo de Usuario:</b></label><br>
+		 <select id="tipoUsuario" name="tipoUsuario">
+		 	<option value="0">   </option>
+		 	<option value="cliente">Cliente</option>
+    		<option value="comerciante">Comerciante</option>
+		 </select><br>
 		 <label for="usuario"><b>Usuario</b></label>
-    <input type="text" placeholder="User" name="email" required>
-    <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Password" name="psw" required>
-    <br>
+    		<input type="text" placeholder="User" name="email" required>
+    	<label for="psw"><b>Password</b></label>
+   			<input type="password" placeholder="Password" name="psw" required>
+    	<br>
     <button type="submit" class="btnLogin">Login</button>
     <button type="button" class="btnCancel" onclick="closeForm()">Close</button>
 		

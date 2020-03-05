@@ -82,7 +82,7 @@ header nav li a:hover {
 
 .colMain{
 	grid-area: colMain;
-	background-color: #b691dd;
+	/*background-color: #b691dd;*/
 	justify-self: stretch;
 	float: left;
 	text-align: left;

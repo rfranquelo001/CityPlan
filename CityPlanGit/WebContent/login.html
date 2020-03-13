@@ -25,50 +25,50 @@ function closeForm() {
 	  document.getElementById("formRegistro").style.display = "none";
 	}
 function validaLogIn() {
-		var tipo= document.getElementById("tipoUsuario");
-		var usuario=document.getElementById("usuario");
-		var passw=document.getElementById("psw");
+		var tipo= document.getElementById("tipoUsuario").value;
+		var usuario=document.getElementById("usuario").value;
+		var passw=document.getElementById("psw").value;
 		var r=true;
 		if(tipo==""){
-			document.getElementById("tipoUsuario").style.backgroundColor("yellow");
+			document.getElementById("tipoUsuario").style.backgroundColor="yellow";
 			r=false;
 		}
 		if(usuario==""){
-			document.getElementById("usuario").style.backgroundColor("yellow");
+			document.getElementById("usuario").style.backgroundColor="yellow";
 			r=false;
 		}
 		if(passw==""){
-			document.getElementById("psw").style.backgroundColor("yellow");
+			document.getElementById("psw").style.backgroundColor="yellow";
 			r=false;
 		}
 		return r;
 	}
 function validaRegistro() {
-		var tipo= document.getElementById("tipoUsuario");
-		var nombre= document.getElementById("nombreUsuario");
-		var apellido= document.getElementById("apellidoUsuario");
-		var userName= document.getElementById("username");
-		var pass= document.getElementById("password");
+		var tipo= document.getElementById("tipoUsuario").value;
+		var nombre= document.getElementById("nombreUsuario").value;
+		var apellido= document.getElementById("apellidoUsuario").value;
+		var userName= document.getElementById("username").value;
+		var pass= document.getElementById("password").value;
 		var r=true;
 
 		if(tipo==""){
-			document.getElementById("tipoUsuario").style.backgroundColor("yellow");
+			document.getElementById("tipoUsuario").style.backgroundColor="yellow";
 			r=false;	
 		}
 		if(nombre==""){
-			document.getElementById("nombre").style.backgroundColor("yellow");
+			document.getElementById("nombre").style.backgroundColor="yellow";
 			r=false;	
 		}
 		if(apellido==""){
-			document.getElementById("apellido").style.backgroundColor("yellow");
+			document.getElementById("apellido").style.backgroundColor="yellow";
 			r=false;
 		}
 		if(userName==""){
-			document.getElementById("userName").style.backgroundColor("yellow");
+			document.getElementById("userName").style.backgroundColor="yellow";
 			r=false;
 		}
 		if(pass==""){
-			document.getElementById("pass").style.backgroundColor("yellow");
+			document.getElementById("pass").style.backgroundColor="yellow";
 			r=false;
 		}
 		return r;

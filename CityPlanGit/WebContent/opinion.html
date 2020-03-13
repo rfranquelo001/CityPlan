@@ -7,6 +7,20 @@
 <link rel="stylesheet" href="estiloCityPlan.css">
 <link rel="stylesheet" href="estiloOpinion.css">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script>
+function msg(){
+	alert("¡Gracias por tu valoración!");
+}
+
+function msgOpinion(){
+	if(document.getElementById("message").value==""){ 
+		alert("Por favor escribe una breve opinión");
+	}else{
+		alert("¡Gracias por tu opinión!");
+	}
+}
+
+</script>
 </head>
 <body>
 <header>
@@ -89,7 +103,7 @@
 				<br/>
 		<!-- Botón enviar -->
 			<input type="submit" class="btnEnviar" value="Enviar" onclick="msg()">
-											<!-- Falta definir la función msg()!!!!!! -->
+											
 			<br/>
 		<section class="formOpinion">
 		<h3>Opinión sobre el evento</h3>
@@ -97,7 +111,7 @@
 		<br/>
 		<textarea id="message" name="message" class="textoOpinion" rows="10" cols="55" placeholder=" Breve opinión"></textarea><br/> 
 		<br/>
-		<input type="submit" class="btnEnviar" value="Enviar" onclick="msg()">
+		<input type="submit" class="btnEnviar" value="Enviar" onclick="msgOpinion()">
 		<br/>
 		</section>
 		</form>

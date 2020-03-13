@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<!-- CityPlan DYNAMIC -->
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>CityPlan: Registro</title>
+<link rel="stylesheet" href="estiloCityPlan.css">
+<link rel="stylesheet" href="estiloRegistro.css">
+</head>
+<body>
+<header>
+	<h1><b>CityPlan</b></h1>
+	<h2><b>¿Qué hacemos hoy?</b></h2>
+	<nav class="menu">
+			<ul>
+				<li><a href="http://cityplantit.byethost24.com/homeMenu.html">Home</a></li>
+				<li><a href="http://cityplantit.byethost24.com/agenda.html">Agenda</a></li>
+				<li><a href="http://cityplantit.byethost24.com/opinion.html">Opinión</a></li>
+				<li><a href="http://cityplantit.byethost24.com/mapa.html">Mapa</a></li>
+				<li><a href="http://cityplantit.byethost24.com/login.html">Login</a></li>
+			</ul>
+		</nav>		
+</header>
+
+<div class="container">
+
+<div class="colMain">
+	<form action="/action_page.php" class="formRegistro">
+	<h2><b>Registro:</b></h2>
+	<label for="tipoUsuario"><b>Tipo de Usuario:</b></label><br>
+		<select id="tipoUsuario" name="tipoUsuario">
+		 	<option value="0">   </option>
+		 	<option value="cliente">Cliente</option>
+    		<option value="comerciante">Comerciante</option>
+		 </select><br>
+	<label for="nombreUsuario"><b>Nombre:</b></label><br>
+    		<input type="text" name="nombreUsuario" required><br>
+    <label for="apellidoUsuario"><b>Apellido:</b></label><br>
+    		<input type="text" name="apellidoUsuario" required><br>
+	<label for="username"><b>Alias de usuario:</b></label><br>
+    		<input type="text" name="username" required><br>
+   	<label for="password"><b>Contraseña</b></label><br>
+   			<input type="password" name="password" required>
+    	<br>	
+    <button type="submit" class="btnRegistro">Registrar</button>
+	</form>
+	
+</div>
+<div class="leftColumn">
+	<h2>FILTROS</h2>
+			<p class="filtros">HORARIO</p>
+			<input class="opfiltro" type="checkbox">Mañana<br>
+			<input class="opfiltro" type="checkbox">Tarde<br>
+			<input class="opfiltro" type="checkbox">Noche<br>
+			<p class="filtros">EDAD</p>			
+				<input class="opfiltro" type="checkbox">Adultos(+18)<br> <input class="opfiltro" type="checkbox">Entre
+				14 y 16 años<br> <input type="checkbox">Infantil<br>
+			<p class="filtros">TIPO</p>
+				<input class="opfiltro" type="checkbox">Deporte<br> <input class="opfiltro" type="checkbox">Museos/exposiciones<br>
+				<input class="opfiltro" type="checkbox">Cine<br> <input class="opfiltro" type="checkbox">Teatro<br>
+				<input class="opfiltro" type="checkbox">Conciertos<br> <input class="opfiltro" type="checkbox">Gastronomía<br>
+				<input class="opfiltro" type="checkbox">Mercados<br>
+</div>
+</div>
+<!-- FOOTER -->
+	<div class="footer">
+		<h3>CityPlan</h3>
+	</div>
+</body>
+</html>

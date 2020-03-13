@@ -19,6 +19,60 @@ function closeForm() {
   document.getElementById("formLogin").style.display = "none";
   document.getElementById("formRegistro").style.display = "none";
 }
+
+function closeForm() {
+	  document.getElementById("formLogin").style.display = "none";
+	  document.getElementById("formRegistro").style.display = "none";
+	}
+function validaLogIn() {
+		var tipo= document.getElementById("tipoUsuario");
+		var usuario=document.getElementById("usuario");
+		var passw=document.getElementById("psw");
+		var r=true;
+		if(tipo==""){
+			document.getElementById("tipoUsuario").style.backgroundColor("yellow");
+			r=false;
+		}
+		if(usuario==""){
+			document.getElementById("usuario").style.backgroundColor("yellow");
+			r=false;
+		}
+		if(passw==""){
+			document.getElementById("psw").style.backgroundColor("yellow");
+			r=false;
+		}
+		return r;
+	}
+function validaRegistro() {
+		var tipo= document.getElementById("tipoUsuario");
+		var nombre= document.getElementById("nombreUsuario");
+		var apellido= document.getElementById("apellidoUsuario");
+		var userName= document.getElementById("username");
+		var pass= document.getElementById("password");
+		var r=true;
+
+		if(tipo==""){
+			document.getElementById("tipoUsuario").style.backgroundColor("yellow");
+			r=false;	
+		}
+		if(nombre==""){
+			document.getElementById("nombre").style.backgroundColor("yellow");
+			r=false;	
+		}
+		if(apellido==""){
+			document.getElementById("apellido").style.backgroundColor("yellow");
+			r=false;
+		}
+		if(userName==""){
+			document.getElementById("userName").style.backgroundColor("yellow");
+			r=false;
+		}
+		if(pass==""){
+			document.getElementById("pass").style.backgroundColor("yellow");
+			r=false;
+		}
+		return r;
+	}
 </script>
 
 </head>
@@ -53,13 +107,12 @@ function closeForm() {
     		<option value="comerciante">Comerciante</option>
 		 </select><br>
 		 <label for="usuario"><b>Usuario</b></label>
-    		<input type="text" placeholder="User" name="email" required>
+    		<input type="text" placeholder="User" name="email" id="usuario" required>
     	<label for="psw"><b>Password</b></label>
-   			<input type="password" placeholder="Password" name="psw" required>
+   			<input type="password" placeholder="Password" name="psw" id="psw" required>
     	<br>
-    <button type="submit" class="btnLogin">Login</button>
+    <button type="submit" class="btnLogin" onclick="return validaLogIn()">Login</button>
     <button type="button" class="btnCancel" onclick="closeForm()">Close</button>
-		
 		 </form>
 	</div>
 	<div class="formRegistro" id="formRegistro" style="display:none;">
@@ -72,15 +125,15 @@ function closeForm() {
     		<option value="comerciante">Comerciante</option>
 		 </select><br>
 	<label for="nombreUsuario"><b>Nombre:</b></label><br>
-    		<input type="text" name="nombreUsuario" required><br>
+    		<input type="text" name="nombreUsuario" id="nombreUsuario" required><br>
     <label for="apellidoUsuario"><b>Apellido:</b></label><br>
-    		<input type="text" name="apellidoUsuario" required><br>
+    		<input type="text" name="apellidoUsuario" id="apellidoUsuario" required><br>
 	<label for="username"><b>Alias de usuario:</b></label><br>
-    		<input type="text" name="username" required><br>
+    		<input type="text" name="username" id="username" required><br>
    	<label for="password"><b>Contraseña</b></label><br>
-   			<input type="password" name="password" required>
+   			<input type="password" name="password" id="password" required>
     	<br>	
-    <button type="submit" class="btnRegistro">Registrar</button>
+    <button type="submit" class="btnRegistro" onclick="return validaRegistro()">Registrar</button>
     <button type="button" class="btnCancel" onclick="closeForm()">Close</button>
 	</form>
 	

@@ -47,11 +47,11 @@ function msgOpinion(){
 			<section class="formValoracion" id="section1">
 				<!-- Pregunta 1 -->
 				<br/><label for="p1" class="pregunta">1) Facilidad para inscribirse en el evento: </label><br/> 
-					<input type=radio id="p2" name="p2">1
-					<input type=radio id="p2" name="p2">2
-					<input type=radio id="p2" name="p2">3
-					<input type=radio id="p2" name="p2">4
-					<input type=radio id="p2" name="p2">5<br/>
+					<input type=radio id="p1" name="p1">1
+					<input type=radio id="p1" name="p1">2
+					<input type=radio id="p1" name="p1">3
+					<input type=radio id="p1" name="p1">4
+					<input type=radio id="p1" name="p1">5<br/>
 				<!-- Pregunta 2 -->
 				<label for="p2" class="pregunta">2) Información previa sobre detalles prácticos del evento:</label><br/> 
 					<input type=radio id="p2" name="p2">1
@@ -109,7 +109,7 @@ function msgOpinion(){
 		<h3>Opinión sobre el evento</h3>
 		<p id="enunciado">En este espacio podrás escribir una breve opinión sobre el evento al que has asistido:</p>
 		<br/>
-		<textarea id="message" name="message" class="textoOpinion" rows="10" cols="55" placeholder=" Breve opinión"></textarea><br/> 
+		<textarea id="message" name="message" class="textoOpinion" id="textoOpinion" rows="10" cols="55" placeholder=" Breve opinión"></textarea><br/> 
 		<br/>
 		<input type="submit" class="btnEnviar" value="Enviar" onclick="msgOpinion()">
 		<br/>

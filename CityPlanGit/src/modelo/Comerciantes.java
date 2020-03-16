@@ -3,6 +3,8 @@ package modelo;
 public class Comerciantes {
 	
 	private String idComerciante;
+	private String nombreComerciante;
+	private String apellidoComerciante;
 	private String passwordComerciante;
 	private Evento anuncioComerciante;
 	
@@ -28,6 +30,20 @@ public class Comerciantes {
 	public void setAnuncioComerciante(Evento anuncioComerciante) {
 		this.anuncioComerciante = anuncioComerciante;
 	}
-	
+	public String getNombreComerciante() {
+		return nombreComerciante;
+	}
+
+	public void setNombreComerciante(String nombreComerciante) {
+		this.nombreComerciante = nombreComerciante;
+	}
+
+	public String getApellidoComerciante() {
+		return apellidoComerciante;
+	}
+
+	public void setApellidoComerciante(String apellidoComerciante) {
+		this.apellidoComerciante = apellidoComerciante;
+	}
 
 }

@@ -2,8 +2,6 @@ package controlador;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,19 +10,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Vista.Utilidades;
-import modelo.Evento;
+import modelo.Cliente;
+import modelo.Comerciantes;
 
 /**
- * Servlet implementation class ServletComerciante
+ * Servlet implementation class ServletRegistroCliente
  */
-@WebServlet("/ServletComerciante")
-public class ServletComerciante extends HttpServlet {
+@WebServlet("/ServletRegistroCliente")
+public class ServletRegistroCliente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServletComerciante() {
+    public ServletRegistroCliente() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -50,25 +49,29 @@ public class ServletComerciante extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		PrintWriter pw=response.getWriter();
-		Evento evento=new Evento();
-		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-		
-		
-		//obtener datos del evento:
-		evento.setNombreEvento(request.getParameter("tituloEvento"));
-		evento.setResumenEvento(request.getParameter("resumenEvento"));
-		evento.setDescripcionEvento(request.getParameter("descripcionEvento"));
-		try {
-			evento.setFechaEvento(formato.parse(request.getParameter("fechaEvento")));
-		} catch (ParseException e) {
-			e.printStackTrace();
+
+		//miro si es Comerciante ó cliente:
+		String tipoUsuario= request.getParameter("tipoUsuario");
+		if(tipoUsuario.equals("cliente")) {
+			Cliente cliente=new Cliente();
+			
+			//recoger datos del cliente
+			cliente.setNombreCliente(request.getParameter("nombreUsuario"));
+			cliente.setApellidoCliente(request.getParameter("apellidoUsuario"));
+			cliente.setIdCliente(request.getParameter("username"));
+			cliente.setPasswordCliente(request.getParameter("password"));	
+			//guardar cliente
+			
+		}else {
+			Comerciantes comerciante=new Comerciantes();
+			//recoger datos del comerciante
+			comerciante.setNombreComerciante(request.getParameter("nombreUsuario"));
+			comerciante.setApellidoComerciante(request.getParameter("apellidoUsuario"));
+			comerciante.setIdComerciante(request.getParameter("username"));
+			comerciante.setPasswordComerciante(request.getParameter("password"));
+			//guardar comerciante
 		}
-		evento.setHoraEvento(request.getParameter("horaEvento"));
-		evento.setLocalizacionEvento(request.getParameter("localizacionEvento"));
-		evento.setFiltrosEvento(request.getParameter("filtrosEvento"));
-		
-		//guardar evento
-		
+	
 	}
 
 }

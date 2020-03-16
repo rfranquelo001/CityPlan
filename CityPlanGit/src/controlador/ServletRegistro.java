@@ -16,14 +16,14 @@ import modelo.Comerciantes;
 /**
  * Servlet implementation class ServletRegistroCliente
  */
-@WebServlet("/ServletRegistroCliente")
-public class ServletRegistroCliente extends HttpServlet {
+@WebServlet("/ServletRegistro")
+public class ServletRegistro extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServletRegistroCliente() {
+    public ServletRegistro() {
         super();
         // TODO Auto-generated constructor stub
     }

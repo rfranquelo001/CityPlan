@@ -7,7 +7,7 @@ public class Cliente {
 	private String apellidoCliente;
 	private String passwordCliente;
 	private String filtrosCliente;
-	
+	private String aliasCliente;
 	
 	public String getIdCliente() {
 		return idCliente;
@@ -38,6 +38,12 @@ public class Cliente {
 	}
 	public void setApellidoCliente(String apellidoCliente) {
 		this.apellidoCliente = apellidoCliente;
+	}
+	public String getAliasCliente() {
+		return aliasCliente;
+	}
+	public void setAliasCliente(String aliasCliente) {
+		this.aliasCliente = aliasCliente;
 	}
 
 }

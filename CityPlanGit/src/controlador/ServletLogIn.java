@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Vista.Utilidades;
+import Vista.VistaPagUsuario;
 import modelo.Cliente;
 import modelo.Comerciantes;
 
@@ -52,18 +53,33 @@ public class ServletLogIn extends HttpServlet {
 		String tipoUsuario;
 		String usuario;
 		String password;
+		VistaPagUsuario vistaPag= new VistaPagUsuario();
 		
 		//miro si es Comerciante ó cliente:
 			tipoUsuario= request.getParameter("tipoUsuario");
+			usuario=request.getParameter("usuario");
+			password=request.getParameter("psw");
+			
 			if(tipoUsuario.equals("cliente")) {
 				Cliente cliente=new Cliente();
 				//>>¿COMO HAGO? creo un b¡objeto y busco el nombre en la BBDD y despues comparo con el password??
 				//comparar datos del cliente
+				if(usuario!=cliente.getAliasCliente()||password!=cliente.getPasswordCliente()) {
+					vistaPag.verErrorLogIn(pw," ");//Falta poner el mensaje de error de acceso
+				}else {
+					
+				}
+				
 				
 				
 			}else {
 				Comerciantes comerciante=new Comerciantes();
 				//comparar datos del comerciante
+				if(usuario!=comerciante.getAliasComerciante()||password!=comerciante.getPasswordComerciante()) {
+					vistaPag.verErrorLogIn(pw, " ");//Falta poner el mensaje de error de acceso
+				}else {
+					
+				}
 				
 			}
 	}

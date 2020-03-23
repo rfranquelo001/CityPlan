@@ -7,6 +7,7 @@ public class Comerciantes {
 	private String apellidoComerciante;
 	private String passwordComerciante;
 	private Evento anuncioComerciante;
+	private String aliasComerciante;
 	
 	public Comerciantes() {
 		super();
@@ -44,6 +45,14 @@ public class Comerciantes {
 
 	public void setApellidoComerciante(String apellidoComerciante) {
 		this.apellidoComerciante = apellidoComerciante;
+	}
+
+	public String getAliasComerciante() {
+		return aliasComerciante;
+	}
+
+	public void setAliasComerciante(String aliasComerciante) {
+		this.aliasComerciante = aliasComerciante;
 	}
 
 }

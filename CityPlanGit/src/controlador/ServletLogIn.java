@@ -70,8 +70,6 @@ public class ServletLogIn extends HttpServlet {
 					
 				}
 				
-				
-				
 			}else {
 				Comerciantes comerciante=new Comerciantes();
 				//comparar datos del comerciante

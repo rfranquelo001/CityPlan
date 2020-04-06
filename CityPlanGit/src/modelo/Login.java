@@ -1,11 +1,11 @@
 package modelo;
 
 public class Login {
-	String usuario;
-	String password;
-	
+	private String usuario;
+	private String password;
+
 	public Login() {
-		//constructor
+		// constructor
 		super();
 	}
 

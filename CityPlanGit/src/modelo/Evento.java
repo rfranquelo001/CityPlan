@@ -6,11 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQuery;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@NamedQuery(name = "Evento.findAll", query = "SELECT e FORM Evento e")
+//@NamedQuery(name = "Evento.findAll", query = "SELECT e FORM Evento e")
 
 public class Evento {
 	@Id

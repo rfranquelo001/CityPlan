@@ -65,6 +65,16 @@ public class ClaseEJB implements Serializable {
 		em.remove(cli);
 	}
 
+	public void registroCliente(Cliente c) {
+		String correo = c.getCorreoCliente();
+		Cliente c2 = em.find(Cliente.class, correo); // PUEDE QUE NO ESTE BIEN POR NO BUSCAR PK
+		if (c2 == null) {
+			aniadirCliente(c);
+		} else {
+			// MOSTRAR MENSAJE DE ERROR
+		}
+	}
+
 	// COMERCIANTES
 	// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

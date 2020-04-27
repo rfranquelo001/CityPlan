@@ -1,4 +1,4 @@
-package Vista;
+package pl;
 
 import java.io.PrintWriter;
 

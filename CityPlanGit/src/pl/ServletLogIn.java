@@ -1,4 +1,4 @@
-package controlador;
+package pl;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -9,21 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Vista.Utilidades;
+import Vista.VistaPagUsuario;
 import modelo.Cliente;
 import modelo.Comerciantes;
 
 /**
- * Servlet implementation class ServletRegistroCliente
+ * Servlet implementation class ServletLogIn
  */
-@WebServlet("/ServletRegistro")
-public class ServletRegistro extends HttpServlet {
+@WebServlet("/ServletLogIn")
+public class ServletLogIn extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServletRegistro() {
+    public ServletLogIn() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -49,29 +49,36 @@ public class ServletRegistro extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		PrintWriter pw=response.getWriter();
-
+		String tipoUsuario;
+		String usuario;
+		String password;
+		VistaPagUsuario vistaPag= new VistaPagUsuario();
+		
 		//miro si es Comerciante ó cliente:
-		String tipoUsuario= request.getParameter("tipoUsuario");
-		if(tipoUsuario.equals("cliente")) {
-			Cliente cliente=new Cliente();
+			tipoUsuario= request.getParameter("tipoUsuario");
+			usuario=request.getParameter("usuario");
+			password=request.getParameter("psw");
 			
-			//recoger datos del cliente
-			cliente.setNombreCliente(request.getParameter("nombreUsuario"));
-			cliente.setApellidoCliente(request.getParameter("apellidoUsuario"));
-			cliente.setAliasCliente(request.getParameter("username"));
-			cliente.setPasswordCliente(request.getParameter("password"));	
-			//guardar cliente
-			
-		}else {
-			Comerciantes comerciante=new Comerciantes();
-			//recoger datos del comerciante
-			comerciante.setNombreComerciante(request.getParameter("nombreUsuario"));
-			comerciante.setApellidoComerciante(request.getParameter("apellidoUsuario"));
-			comerciante.setAliasComerciante(request.getParameter("username"));
-			comerciante.setPasswordComerciante(request.getParameter("password"));
-			//guardar comerciante
-		}
-	
+			if(tipoUsuario.equals("cliente")) {
+				Cliente cliente=new Cliente();
+				//>>¿COMO HAGO? creo un b¡objeto y busco el nombre en la BBDD y despues comparo con el password??
+				//comparar datos del cliente
+				if(usuario!=cliente.getAliasCliente()||password!=cliente.getPasswordCliente()) {
+					vistaPag.verErrorLogIn(pw," ");//Falta poner el mensaje de error de acceso
+				}else {
+					
+				}
+				
+			}else {
+				Comerciantes comerciante=new Comerciantes();
+				//comparar datos del comerciante
+				if(usuario!=comerciante.getAliasComerciante()||password!=comerciante.getPasswordComerciante()) {
+					vistaPag.verErrorLogIn(pw, " ");//Falta poner el mensaje de error de acceso
+				}else {
+					
+				}
+				
+			}
 	}
 
 }

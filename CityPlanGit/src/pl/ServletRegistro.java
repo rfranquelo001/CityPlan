@@ -1,4 +1,4 @@
-package controlador;
+package pl;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -9,21 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Vista.Utilidades;
-import modelo.Opinion;
-import modelo.Valoracion;
+import modelo.Cliente;
+import modelo.Comerciantes;
 
 /**
- * Servlet implementation class ServletCliente
+ * Servlet implementation class ServletRegistroCliente
  */
-@WebServlet("/ServletCliente")
-public class ServletCliente extends HttpServlet {
+@WebServlet("/ServletRegistro")
+public class ServletRegistro extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServletCliente() {
+    public ServletRegistro() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,7 +31,6 @@ public class ServletCliente extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		PrintWriter pwGet=response.getWriter();
 		pwGet.println(Utilidades.DOCTYPE);
 		pwGet.println(Utilidades.headConTitleStyle("Error, solo se puede acceder por POST", "estiloCityPlan.css"));
@@ -48,34 +46,31 @@ public class ServletCliente extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		PrintWriter pw=response.getWriter();
-		Opinion opinion=new Opinion();
-		Valoracion valoracion=new Valoracion();
-		int totalValoracion;
-		//opinion.setCliente(cliente);>>COMO LO HAGO???
-		//opinion.setEvento(evento);>>COMO LO HAGO???
-		opinion.setTextoOpinion(request.getParameter("textoOpinion"));
-		
-		//valoracion.setCliente(cliente);>>COMO LO HAGO???
-		//valoracion.setEvento(evento);>>COMO LO HAGO???
-		valoracion.setRespuestasValoracion((request.getParameter("p1")+
-				request.getParameter("p2")+
-				request.getParameter("p3")+
-				request.getParameter("p4")+
-				request.getParameter("p5")+
-				request.getParameter("p6")+
-				request.getParameter("p7")+
-				request.getParameter("p8")));
-		//calculo totalValoracion
-		totalValoracion= (Integer.parseInt("p1")+Integer.parseInt("p2")+Integer.parseInt("p3")+
-				Integer.parseInt("p4")+Integer.parseInt("p5")+Integer.parseInt("p6")+
-				Integer.parseInt("p7")+Integer.parseInt("p8"))/8;
-		
-		valoracion.setTotalValoracion(totalValoracion);
-		
-		//guardar opinion
-		//guardar valoracion
-		
+
+		//miro si es Comerciante ó cliente:
+		String tipoUsuario= request.getParameter("tipoUsuario");
+		if(tipoUsuario.equals("cliente")) {
+			Cliente cliente=new Cliente();
+			
+			//recoger datos del cliente
+			cliente.setNombreCliente(request.getParameter("nombreUsuario"));
+			cliente.setApellidoCliente(request.getParameter("apellidoUsuario"));
+			cliente.setAliasCliente(request.getParameter("username"));
+			cliente.setPasswordCliente(request.getParameter("password"));	
+			//guardar cliente
+			
+		}else {
+			Comerciantes comerciante=new Comerciantes();
+			//recoger datos del comerciante
+			comerciante.setNombreComerciante(request.getParameter("nombreUsuario"));
+			comerciante.setApellidoComerciante(request.getParameter("apellidoUsuario"));
+			comerciante.setAliasComerciante(request.getParameter("username"));
+			comerciante.setPasswordComerciante(request.getParameter("password"));
+			//guardar comerciante
+		}
+	
 	}
 
 }

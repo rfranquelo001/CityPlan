@@ -1,4 +1,4 @@
-package controlador;
+package pl;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -10,21 +10,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Vista.Utilidades;
-import Vista.VistaPagUsuario;
-import modelo.Cliente;
-import modelo.Comerciantes;
+import bl.Valoracion;
+import modelo.Opinion;
 
 /**
- * Servlet implementation class ServletLogIn
+ * Servlet implementation class ServletCliente
  */
-@WebServlet("/ServletLogIn")
-public class ServletLogIn extends HttpServlet {
+@WebServlet("/ServletCliente")
+public class ServletCliente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServletLogIn() {
+    public ServletCliente() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,6 +32,7 @@ public class ServletLogIn extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		PrintWriter pwGet=response.getWriter();
 		pwGet.println(Utilidades.DOCTYPE);
 		pwGet.println(Utilidades.headConTitleStyle("Error, solo se puede acceder por POST", "estiloCityPlan.css"));
@@ -48,38 +48,34 @@ public class ServletLogIn extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		PrintWriter pw=response.getWriter();
-		String tipoUsuario;
-		String usuario;
-		String password;
-		VistaPagUsuario vistaPag= new VistaPagUsuario();
+		Opinion opinion=new Opinion();
+		Valoracion valoracion=new Valoracion();
+		int totalValoracion;
+		//opinion.setCliente(cliente);>>COMO LO HAGO???
+		//opinion.setEvento(evento);>>COMO LO HAGO???
+		opinion.setTextoOpinion(request.getParameter("textoOpinion"));
 		
-		//miro si es Comerciante ó cliente:
-			tipoUsuario= request.getParameter("tipoUsuario");
-			usuario=request.getParameter("usuario");
-			password=request.getParameter("psw");
-			
-			if(tipoUsuario.equals("cliente")) {
-				Cliente cliente=new Cliente();
-				//>>¿COMO HAGO? creo un b¡objeto y busco el nombre en la BBDD y despues comparo con el password??
-				//comparar datos del cliente
-				if(usuario!=cliente.getAliasCliente()||password!=cliente.getPasswordCliente()) {
-					vistaPag.verErrorLogIn(pw," ");//Falta poner el mensaje de error de acceso
-				}else {
-					
-				}
-				
-			}else {
-				Comerciantes comerciante=new Comerciantes();
-				//comparar datos del comerciante
-				if(usuario!=comerciante.getAliasComerciante()||password!=comerciante.getPasswordComerciante()) {
-					vistaPag.verErrorLogIn(pw, " ");//Falta poner el mensaje de error de acceso
-				}else {
-					
-				}
-				
-			}
+		//valoracion.setCliente(cliente);>>COMO LO HAGO???
+		//valoracion.setEvento(evento);>>COMO LO HAGO???
+		valoracion.setRespuestasValoracion((request.getParameter("p1")+
+				request.getParameter("p2")+
+				request.getParameter("p3")+
+				request.getParameter("p4")+
+				request.getParameter("p5")+
+				request.getParameter("p6")+
+				request.getParameter("p7")+
+				request.getParameter("p8")));
+		//calculo totalValoracion
+		totalValoracion= (Integer.parseInt("p1")+Integer.parseInt("p2")+Integer.parseInt("p3")+
+				Integer.parseInt("p4")+Integer.parseInt("p5")+Integer.parseInt("p6")+
+				Integer.parseInt("p7")+Integer.parseInt("p8"))/8;
+		
+		valoracion.setTotalValoracion(totalValoracion);
+		
+		//guardar opinion
+		//guardar valoracion
+		
 	}
 
 }

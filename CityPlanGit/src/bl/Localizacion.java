@@ -1,4 +1,4 @@
-package modelo;
+package bl;
 
 public class Localizacion {
 	

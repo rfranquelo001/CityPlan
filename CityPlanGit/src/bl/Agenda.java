@@ -1,19 +1,20 @@
 package bl;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import dl.Evento;
 
 public class Agenda {
 
-	ArrayList<Evento> agenda;
+	List<Evento> agenda;
 
 	public Agenda() {
 		// constructor
 		super();
 	}
 
-	public ArrayList<Evento> getAgenda() {
+	public List<Evento> getAgenda() {
 		return agenda;
 	}
 

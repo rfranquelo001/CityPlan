@@ -2,6 +2,7 @@ package dl;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.sql.Time;
 import java.util.Date;
 import java.util.List;
 
@@ -17,9 +18,12 @@ public class Evento implements Serializable {
 	private int idEvento;
 	private String codigoQR;
 	private String descripcionEvento;
-	private Date fechayHora;
+	private Date fechaEvento;
+	private Time horaEvento;
 	private String imagenEvento;
 	private String localizacionEvento;
+	private String nombreEvento;
+	private String resumenEvento;
 	private Comerciante comerciante;
 	private List<Filtro> filtros;
 	private List<Opinion> opinions;
@@ -57,13 +61,22 @@ public class Evento implements Serializable {
 	}
 
 
-	@Temporal(TemporalType.TIMESTAMP)
-	public Date getFechayHora() {
-		return this.fechayHora;
+	@Temporal(TemporalType.DATE)
+	public Date getFechaEvento() {
+		return this.fechaEvento;
 	}
 
-	public void setFechayHora(Date fechayHora) {
-		this.fechayHora = fechayHora;
+	public void setFechaEvento(Date fechaEvento) {
+		this.fechaEvento = fechaEvento;
+	}
+
+
+	public Time getHoraEvento() {
+		return this.horaEvento;
+	}
+
+	public void setHoraEvento(Time horaEvento) {
+		this.horaEvento = horaEvento;
 	}
 
 
@@ -82,6 +95,24 @@ public class Evento implements Serializable {
 
 	public void setLocalizacionEvento(String localizacionEvento) {
 		this.localizacionEvento = localizacionEvento;
+	}
+
+
+	public String getNombreEvento() {
+		return this.nombreEvento;
+	}
+
+	public void setNombreEvento(String nombreEvento) {
+		this.nombreEvento = nombreEvento;
+	}
+
+
+	public String getResumenEvento() {
+		return this.resumenEvento;
+	}
+
+	public void setResumenEvento(String resumenEvento) {
+		this.resumenEvento = resumenEvento;
 	}
 
 

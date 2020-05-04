@@ -2,9 +2,11 @@ package pl;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,7 +14,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bl.ClaseEJB;
 import dl.Evento;
+import dl.Filtro;
 
 /**
  * Servlet implementation class ServletComerciante
@@ -56,6 +60,9 @@ public class ServletComerciante extends HttpServlet {
 		PrintWriter pw = response.getWriter();
 		Evento evento = new Evento();
 		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+		List<String> filtros;
+
+		ClaseEJB ejb = null;
 
 		// obtener datos del evento:
 		evento.setNombreEvento(request.getParameter("tituloEvento"));
@@ -66,9 +73,13 @@ public class ServletComerciante extends HttpServlet {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		evento.setHoraEvento(request.getParameter("horaEvento"));
+		evento.setHoraEvento(Time.valueOf(request.getParameter("horaEvento")));
 		evento.setLocalizacionEvento(request.getParameter("localizacionEvento"));
-		evento.setFiltros(Arrays.asList((request.getParameter("filtrosEvento")).split(",")));
+
+		List<Filtro> filtrosBD = ejb.getFiltros(); // obtengo listado de filtros de la BBDD
+		filtros = Arrays.asList((request.getParameter("filtrosEvento")).split(","));
+
+		// evento.setFiltros(filtros);
 
 		// guardar evento
 

@@ -21,7 +21,7 @@ import dl.Opinion;
 @LocalBean
 public class ClaseEJB implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	private boolean errorCliente = false;
 	@PersistenceContext
 	EntityManager em;
 
@@ -35,7 +35,11 @@ public class ClaseEJB implements Serializable {
 		return listaEventos;
 	}
 
-	public void aniadirEvento(Evento ev) {
+	// Evento tiene un comerciante, uno o muchos filtros, una o muchas opiniones
+	// No se si así funcionará, pero hay que pasarle el idComerciante
+	public void aniadirEvento(Evento ev, int idComerciante) {
+		Comerciante com = em.find(Comerciante.class, idComerciante);
+		ev.setComerciante(com);
 		em.persist(ev);
 		System.out.println("Evento dado de alta:\n\t " + ev.getDescripcionEvento() + "\n\t" + ev.getIdEvento());
 	}
@@ -43,12 +47,6 @@ public class ClaseEJB implements Serializable {
 	public void eliminarEvento(int idEvento) {
 		Evento ev = em.find(Evento.class, idEvento);
 		em.remove(ev);
-	}
-
-	// metodo para obtener un evento concreto
-	public Evento getEvento(int idEvento) {
-		Evento ev = em.find(Evento.class, idEvento);
-		return ev;
 	}
 
 	// CLIENTES
@@ -71,14 +69,31 @@ public class ClaseEJB implements Serializable {
 		em.remove(cli);
 	}
 
-	public void registroCliente(Cliente c) {
+	// Avisamos de error si ya existe un registro con ese email
+	public boolean registroCliente(Cliente c) {
 		String correo = c.getCorreoCliente();
 		Cliente c2 = em.find(Cliente.class, correo); // PUEDE QUE NO ESTE BIEN POR NO BUSCAR PK
 		if (c2 == null) {
 			aniadirCliente(c);
 		} else {
-			// MOSTRAR MENSAJE DE ERROR
+			errorCliente = true;
 		}
+		return true;
+	}
+
+	public Cliente obtenerClienteConNombre(String nombre) {
+		Cliente c = em.find(Cliente.class, nombre);
+		return c;
+	}
+
+	// Para verificar que el nombre y contraseña del LOGIN son correctos
+	public boolean verificarCliente(String nombre, String contrasenia) {
+		boolean verificado = false;
+		Cliente c = em.find(Cliente.class, nombre);
+		if (contrasenia.equals(c.getPasswordCliente())) {
+			verificado = true;
+		}
+		return verificado;
 	}
 
 	// COMERCIANTES
@@ -100,6 +115,21 @@ public class ClaseEJB implements Serializable {
 	public void eliminarComerciante(int idComerciante) {
 		Comerciante com = em.find(Comerciante.class, idComerciante);
 		em.remove(com);
+	}
+
+	public Comerciante obtenerComercianteConNombre(String nombre) {
+		Comerciante com = em.find(Comerciante.class, nombre);
+		return com;
+	}
+
+	// Para verificar que el nombre y contraseña del LOGIN son correctos
+	public boolean verificarComerciante(String nombre, String contrasenia) {
+		boolean verificado = false;
+		Comerciante com = em.find(Comerciante.class, nombre);
+		if (contrasenia.equals(com.getPasswordComerciante())) {
+			verificado = true;
+		}
+		return verificado;
 	}
 
 	// ASOCIACIONES

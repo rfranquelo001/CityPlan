@@ -35,6 +35,7 @@ public class ServletRegistro extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		PrintWriter pwGet = response.getWriter();
@@ -52,6 +53,7 @@ public class ServletRegistro extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -65,16 +67,31 @@ public class ServletRegistro extends HttpServlet {
 			// recoger datos del cliente
 			cliente.setNombreCliente(request.getParameter("nombreUsuario"));
 			cliente.setPasswordCliente(request.getParameter("password"));
-			// guardar cliente
-			ejb.aniadirCliente(cliente);
+			// comprobar que no existe un cliente con el mismo nombre
+			Cliente cliente2 = ejb.obtenerClienteConNombre(cliente.getNombreCliente());
+			if (cliente2 == null) {
+				// guardar cliente
+				ejb.aniadirCliente(cliente);
+				// MOSTRAR MENSAJE DE USUARIO AÑADIDO SATISFACTORIAMENTE
+			} else {
+				// MOSTRAR MENSAJE DE ESE USUARIO YA EXISTE
+			}
 
 		} else {
 			Comerciante comerciante = new Comerciante();
 			// recoger datos del comerciante
 			comerciante.setNombreComerciante(request.getParameter("nombreUsuario"));
 			comerciante.setPasswordComerciante(request.getParameter("password"));
-			// guardar comerciante
-			ejb.aniadirComerciante(comerciante);
+
+			// comprobar que no existe un comerciante con el mismo nombre
+			Comerciante comerciante2 = ejb.obtenerComercianteConNombre(comerciante.getNombreComerciante());
+			if (comerciante2 == null) {
+				// guardar comerciante
+				ejb.aniadirComerciante(comerciante);
+				// MOSTRAR MENSAJE DE COMERCIANTE AÑADIDO SATISFACTORIAMENTE
+			} else {
+				// MOSTRAR MENSAJE DE ESE COMERCIANTE YA EXISTE
+			}
 		}
 
 	}

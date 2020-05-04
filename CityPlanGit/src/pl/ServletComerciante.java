@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -40,6 +41,7 @@ public class ServletComerciante extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		PrintWriter pwGet = response.getWriter();
@@ -57,15 +59,18 @@ public class ServletComerciante extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		// DECLARACIONES INICIALIZACIONES
 		PrintWriter pw = response.getWriter();
 		Evento evento = new Evento();
 		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 		List<String> filtros;
+		int i, j, k;
 
-		// obtener datos del evento:
+		// OBTENCIÓN DE DATOS DEL REQUEST
 		evento.setNombreEvento(request.getParameter("tituloEvento"));
 		evento.setResumenEvento(request.getParameter("resumenEvento"));
 		evento.setDescripcionEvento(request.getParameter("descripcionEvento"));
@@ -77,12 +82,34 @@ public class ServletComerciante extends HttpServlet {
 		evento.setHoraEvento(Time.valueOf(request.getParameter("horaEvento")));
 		evento.setLocalizacionEvento(request.getParameter("localizacionEvento"));
 
+		// OBTENCIÓN DE LOS FILTROS CONTRASTANDO QUE EXISTAN EN LA BASE DE DATOS
 		List<Filtro> filtrosBD = ejb.getFiltros(); // obtengo listado de filtros de la BBDD
-		filtros = Arrays.asList((request.getParameter("filtrosEvento")).split(","));
-		// comparar string con nombreFiltro y si coincide asocial el evento al filtro
+		List<String> filtrosBDString = new ArrayList<String>(); // creo un listado de string de los filtros de la BBDD
+		for (k = 0; k < filtrosBD.size(); k++) {// obtengo los nombres de los filtros en la nueva Lista
+			filtrosBDString.add(k, filtrosBD.get(k).getNombreFiltro());
+		}
+		filtros = Arrays.asList((request.getParameter("filtrosEvento")).split(","));// obtengo el listado de filtros
+																					// introducido
+		List<Filtro> filtrosContrastados = new ArrayList<Filtro>();
+		// comparar string con nombreFiltro y si coincide asociar el evento al filtro
+		for (i = 0; i < filtros.size(); i++) {// recorro el array de filtros introducido por el usuario
+			for (j = 0; j < filtrosBD.size(); j++) {
+				if (filtros.get(i).equals(filtrosBDString.get(j))) {
+					filtrosContrastados.add(filtrosBD.get(j));
+				}
+			}
+		} // Ya tengo los nombres de los filtros que ha introducido el usuario que
+			// pertenecen a la DB
+		evento.setFiltros(filtrosContrastados);
 
-		// guardar evento
+		// GUARDAR EVENTO
+		// ******************************************
+		// Problema, obtener idComerciante
+		// ******************************************
+		// SCOPES: https://memorynotfound.com/servlet-attributes-example/
+		//
 
+		ejb.aniadirEvento(evento, idComerciante);
 	}
 
 }

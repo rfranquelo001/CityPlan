@@ -45,4 +45,12 @@ public class Valoracion {
 		this.respuestasValoracion = respuestasValoracion;
 	}
 
+	// Calcular nuevo valor de la valoración:
+	public int calculaValoracion(int p1, int p2, int p3, int p4, int p5, int p6, int p7, int p8) {
+
+		totalValoracion = (p1 + p2 + p3 + p4 + p5 + p6 + p7 + p8) / 8;
+		return totalValoracion;
+
+	}
+
 }

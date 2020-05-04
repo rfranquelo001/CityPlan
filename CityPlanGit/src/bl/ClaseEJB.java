@@ -45,6 +45,12 @@ public class ClaseEJB implements Serializable {
 		em.remove(ev);
 	}
 
+	// metodo para obtener un evento concreto
+	public Evento getEvento(int idEvento) {
+		Evento ev = em.find(Evento.class, idEvento);
+		return ev;
+	}
+
 	// CLIENTES
 	// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

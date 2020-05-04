@@ -3,12 +3,14 @@ package pl;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bl.ClaseEJB;
 import dl.Cliente;
 import dl.Comerciante;
 
@@ -18,6 +20,8 @@ import dl.Comerciante;
 @WebServlet("/ServletRegistro")
 public class ServletRegistro extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	@EJB
+	private ClaseEJB ejb;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -62,6 +66,7 @@ public class ServletRegistro extends HttpServlet {
 			cliente.setNombreCliente(request.getParameter("nombreUsuario"));
 			cliente.setPasswordCliente(request.getParameter("password"));
 			// guardar cliente
+			ejb.aniadirCliente(cliente);
 
 		} else {
 			Comerciante comerciante = new Comerciante();
@@ -69,6 +74,7 @@ public class ServletRegistro extends HttpServlet {
 			comerciante.setNombreComerciante(request.getParameter("nombreUsuario"));
 			comerciante.setPasswordComerciante(request.getParameter("password"));
 			// guardar comerciante
+			ejb.aniadirComerciante(comerciante);
 		}
 
 	}

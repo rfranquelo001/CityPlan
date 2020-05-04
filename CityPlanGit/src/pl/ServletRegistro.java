@@ -60,8 +60,6 @@ public class ServletRegistro extends HttpServlet {
 
 			// recoger datos del cliente
 			cliente.setNombreCliente(request.getParameter("nombreUsuario"));
-			cliente.setApellidoCliente(request.getParameter("apellidoUsuario"));
-			cliente.setAliasCliente(request.getParameter("username"));
 			cliente.setPasswordCliente(request.getParameter("password"));
 			// guardar cliente
 
@@ -69,8 +67,6 @@ public class ServletRegistro extends HttpServlet {
 			Comerciante comerciante = new Comerciante();
 			// recoger datos del comerciante
 			comerciante.setNombreComerciante(request.getParameter("nombreUsuario"));
-			comerciante.setApellidoComerciante(request.getParameter("apellidoUsuario"));
-			comerciante.setAliasComerciante(request.getParameter("username"));
 			comerciante.setPasswordComerciante(request.getParameter("password"));
 			// guardar comerciante
 		}

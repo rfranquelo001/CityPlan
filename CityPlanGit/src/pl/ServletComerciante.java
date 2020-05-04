@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,6 +25,8 @@ import dl.Filtro;
 @WebServlet("/ServletComerciante")
 public class ServletComerciante extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	@EJB
+	private ClaseEJB ejb;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -62,8 +65,6 @@ public class ServletComerciante extends HttpServlet {
 		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 		List<String> filtros;
 
-		ClaseEJB ejb = null;
-
 		// obtener datos del evento:
 		evento.setNombreEvento(request.getParameter("tituloEvento"));
 		evento.setResumenEvento(request.getParameter("resumenEvento"));
@@ -78,8 +79,7 @@ public class ServletComerciante extends HttpServlet {
 
 		List<Filtro> filtrosBD = ejb.getFiltros(); // obtengo listado de filtros de la BBDD
 		filtros = Arrays.asList((request.getParameter("filtrosEvento")).split(","));
-
-		// evento.setFiltros(filtros);
+		// comparar string con nombreFiltro y si coincide asocial el evento al filtro
 
 		// guardar evento
 

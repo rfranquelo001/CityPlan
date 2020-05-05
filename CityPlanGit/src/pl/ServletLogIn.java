@@ -58,17 +58,14 @@ public class ServletLogIn extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		PrintWriter pw = response.getWriter();
-		String tipoUsuario;
-		String usuario;
-		String password;
 		VistaPagUsuario vistaPag = new VistaPagUsuario();
+
+		String tipoUsuario = request.getParameter("tipoUsuario");
+		String usuario = request.getParameter("usuario");
+		String password = request.getParameter("psw");
+
 		int k;
 		boolean clienteCorrecto = false, contraseniaCorrecta = false;
-
-		// OBTENER DATOS
-		tipoUsuario = request.getParameter("tipoUsuario");
-		usuario = request.getParameter("usuario");
-		password = request.getParameter("psw");
 
 		/*
 		 * //OBTENER LISTA DE CLIENTES - FORMA 1 Cliente cliente = new Cliente();
@@ -101,7 +98,7 @@ public class ServletLogIn extends HttpServlet {
 			if (cliente2 != null) {
 				contraseniaCorrecta = ejb.verificarCliente(usuario, password);
 			} else {
-				vistaPag.verErrorLogIn(pw, " ");// Falta poner el mensaje de error de acceso
+				vistaPag.verErrorLogIn(pw);
 			}
 		} else if (tipoUsuario.equals("comerciante")) {
 			// COMPROBAR COMERCIANTE EXISTENTE - FORMA 2
@@ -110,13 +107,23 @@ public class ServletLogIn extends HttpServlet {
 			if (comerciante2 != null) {
 				contraseniaCorrecta = ejb.verificarComerciante(usuario, password);
 			} else {
-				vistaPag.verErrorLogIn(pw, " ");// Falta poner el mensaje de error de acceso
+				vistaPag.verErrorLogIn(pw);
 			}
 		}
 
 		if (contraseniaCorrecta) {
 			// MARCAR SESSION SCOPED PARA QUE SE MANTENGA LA SESIÓN CON ESE USUARIO Y
 			// CONTRASEÑA
+
+			// comprobados usuario y contraseña, redirijo al cliente a la pag en la que se
+			// encontraba
+			// y al comerciante a la de anuncio de evento
+			if (tipoUsuario.equals("comerciante")) {
+				response.sendRedirect("http://localhost:8080/CityPlanGit/formularioEvento.html");
+			} else {
+				response.sendRedirect("http://localhost:8080/CityPlanGit/homeMenu.html");
+			}
+
 		}
 	}
 

@@ -58,7 +58,7 @@ public class ServletRegistro extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		PrintWriter pw = response.getWriter();
-
+		VistaResultadoRegistro resReg = new VistaResultadoRegistro();
 		// miro si es Comerciante ó cliente:
 		String tipoUsuario = request.getParameter("tipoUsuario");
 		if (tipoUsuario.equals("cliente")) {
@@ -72,7 +72,8 @@ public class ServletRegistro extends HttpServlet {
 			if (cliente2 == null) {
 				// guardar cliente
 				ejb.aniadirCliente(cliente);
-				// MOSTRAR MENSAJE DE USUARIO AÑADIDO SATISFACTORIAMENTE
+				resReg.usuarioOK(pw); // se muestra MENSAJE DE USUARIO AÑADIDO SATISFACTORIAMENTE
+
 			} else {
 				// MOSTRAR MENSAJE DE ESE USUARIO YA EXISTE
 			}

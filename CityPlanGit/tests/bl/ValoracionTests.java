@@ -57,17 +57,17 @@ public class ValoracionTests {
 		System.out.println("Calcular valoracion");
 		Valoracion val = new Valoracion();
 
-		float p1 = 1;
-		float p2 = 2;
-		float p3 = 3;
-		float p4 = 4;
-		float p5 = 5;
-		float p6 = 6;
-		float p7 = 7;
-		float p8 = 8;
+		int p1 = 1;
+		int p2 = 2;
+		int p3 = 3;
+		int p4 = 4;
+		int p5 = 5;
+		int p6 = 6;
+		int p7 = 7;
+		int p8 = 8;
 
 		float result = val.calculaValoracion(p1, p2, p3, p4, p5, p6, p7, p8);
-		assertEquals();
+		// assertEquals();
 
 	}
 

@@ -83,12 +83,6 @@ public class ServletCliente extends HttpServlet {
 				Integer.parseInt(request.getParameter("p6")), Integer.parseInt(request.getParameter("p7")),
 				Integer.parseInt(request.getParameter("p8")));
 
-		// totalValoracion = (Integer.parseInt("p1") + Integer.parseInt("p2") +
-		// Integer.parseInt("p3")
-		// + Integer.parseInt("p4") + Integer.parseInt("p5") + Integer.parseInt("p6") +
-		// Integer.parseInt("p7")
-		// + Integer.parseInt("p8")) / 8;
-
 		// recalculo valoracion del evento:
 		// totValEvento=evento.recalculaValoracion(Integer.parseInt("p1"),
 		// Integer.parseInt("p2"),

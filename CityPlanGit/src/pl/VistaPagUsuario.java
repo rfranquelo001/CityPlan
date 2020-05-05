@@ -27,7 +27,7 @@ public class VistaPagUsuario implements InterfazVista {
 
 	}
 
-	public void verErrorLogIn(PrintWriter pw, String contenido) {
+	public void verErrorLogIn(PrintWriter pw) {
 		String errorLogIn = "<p>ERROR: Log In incorrecto</p><button onclick=\"goBack()\">Volver</button>";
 		String codigoGoBack = "<script>\n" + "function goBack() {\n" + "  window.history.back();\n" + "}\n"
 				+ "</script>";

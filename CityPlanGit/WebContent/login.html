@@ -98,7 +98,7 @@ function validaRegistro() {
 					style="width: center;font-size:0.5em;"><b>Registrarse</b></button>
 	
 	<div class="formLogin" id="formLogin">
-		 <form action="/action_page.php" class="formLoginContainer">
+		 <form action="/ServletLogin" method="post" class="formLoginContainer">
 		 <h2><b>Log In</b></h2>
 		 <label for="tipoUsuario"><b>Tipo de Usuario:</b></label><br>
 		 <select id="tipoUsuario" name="tipoUsuario">
@@ -107,7 +107,7 @@ function validaRegistro() {
     		<option value="comerciante">Comerciante</option>
 		 </select><br>
 		 <label for="usuario"><b>Usuario</b></label>
-    		<input type="text" placeholder="User" name="email" id="usuario" required>
+    		<input type="text" placeholder="User" name="usuario" id="usuario" required>
     	<label for="psw"><b>Password</b></label>
    			<input type="password" placeholder="Password" name="psw" id="psw" required>
     	<br>
@@ -117,7 +117,7 @@ function validaRegistro() {
 	</div>
 	<div class="formRegistro" id="formRegistro" style="display:none;">
 	
-	<form action="/action_page.php" class="formRegistro">
+	<form action="/ServletRegistro" method="post" class="formRegistro">
 	<h2><b>Registro:</b></h2>
 	<label for="tipoUsuario"><b>Tipo de Usuario:</b></label><br>
 		<select id="tipoUsuario" name="tipoUsuario">

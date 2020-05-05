@@ -73,9 +73,8 @@ public class ServletRegistro extends HttpServlet {
 				// guardar cliente
 				ejb.aniadirCliente(cliente);
 				resReg.usuarioOK(pw); // se muestra MENSAJE DE USUARIO AÑADIDO SATISFACTORIAMENTE
-
 			} else {
-				// MOSTRAR MENSAJE DE ESE USUARIO YA EXISTE
+				resReg.usuarioExiste(pw);// se muestra MENSAJE DE ESE USUARIO YA EXISTE
 			}
 
 		} else {
@@ -89,9 +88,9 @@ public class ServletRegistro extends HttpServlet {
 			if (comerciante2 == null) {
 				// guardar comerciante
 				ejb.aniadirComerciante(comerciante);
-				// MOSTRAR MENSAJE DE COMERCIANTE AÑADIDO SATISFACTORIAMENTE
+				resReg.comercianteOK(pw);// muestra MENSAJE DE COMERCIANTE AÑADIDO SATISFACTORIAMENTE
 			} else {
-				// MOSTRAR MENSAJE DE ESE COMERCIANTE YA EXISTE
+				resReg.comercianteExiste(pw);// MOSTRAR MENSAJE DE ESE COMERCIANTE YA EXISTE
 			}
 		}
 

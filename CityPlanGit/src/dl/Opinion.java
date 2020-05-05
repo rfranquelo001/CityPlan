@@ -18,7 +18,8 @@ import javax.persistence.NamedQuery;
  */
 @Entity
 @NamedQueries({ @NamedQuery(name = "Opinion.findAll", query = "SELECT o FROM Opinion o"),
-		@NamedQuery(name = "Opinion.Valoracion", query = "SELECT o.valoracion FROM Opinion o") })
+		@NamedQuery(name = "Opinion.Valoracion", query = "SELECT o.valoracion FROM Opinion o"),
+		@NamedQuery(name = "Opinion.Evento", query = "SELECT o.idEvento FROM Opinion o") })
 public class Opinion implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int idOpinion;

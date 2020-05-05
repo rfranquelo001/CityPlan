@@ -64,9 +64,9 @@ public class ServletCliente extends HttpServlet {
 		PrintWriter pw = response.getWriter();
 
 		Evento evento;
-		Opinion opinion = new Opinion();
+		Opinion opinion;
 		Valoracion valoracion = new Valoracion();
-		float totalValoracion, totValEvento;
+		float totalValoracion, totalValoracionBD, totValEvento;
 
 		HttpSession session = request.getSession(true);
 
@@ -81,11 +81,13 @@ public class ServletCliente extends HttpServlet {
 
 		// calculo totalValoracion
 		// HACE FALTA OBTENER DEL EJB LA VALORACION ACTUAL DEL EVENTO
+		evento = ejb.getEvento(request.getParameter("nombreEvento"));
+		totalValoracionBD = opinion.getValoracion();
 		totalValoracion = valoracion.calculaValoracion(Integer.parseInt(request.getParameter("p1")),
 				Integer.parseInt(request.getParameter("p2")), Integer.parseInt(request.getParameter("p3")),
 				Integer.parseInt(request.getParameter("p4")), Integer.parseInt(request.getParameter("p5")),
 				Integer.parseInt(request.getParameter("p6")), Integer.parseInt(request.getParameter("p7")),
-				Integer.parseInt(request.getParameter("p8")));
+				Integer.parseInt(request.getParameter("p8")), request.getParameter("nombreEvento"));
 
 		// recalculo valoracion del evento:
 		// totValEvento=evento.recalculaValoracion(Integer.parseInt("p1"),

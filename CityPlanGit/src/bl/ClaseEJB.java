@@ -49,6 +49,12 @@ public class ClaseEJB implements Serializable {
 		em.remove(ev);
 	}
 
+	public Evento getEvento(String nombreEvento) {
+		Evento ev = new Evento();
+		ev = (Evento) em.createNamedQuery("Evento.findEvento");
+		return ev;
+	}
+
 	// CLIENTES
 	// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

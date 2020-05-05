@@ -77,18 +77,18 @@ function validaRegistro() {
 		 <h:form action="/action_page.php" class="formLoginContainer">
 		 <h2><b>Log In</b></h2>
 		 <label for="tipoUsuario"><b>Tipo de Usuario:</b></label><br/>
-		 <select id="tipoUsuario" name="tipoUsuario">
-		 	<option value="0">   </option>
-		 	<option value="cliente">Cliente</option>
-    		<option value="comerciante">Comerciante</option>
-		 </select><br/>
+		 <h:selectOneMenu id="tipoUsuario" name="tipoUsuario">
+		 	<f:selectItem itemValue="0">   </f:selectItem>
+		 	<f:selectItem itemValue="cliente">Cliente</f:selectItem>
+    		<f:selectItem itemValue="comerciante">Comerciante</f:selectItem>
+		 </h:selectOneMenu><br/>
 		 <label for="usuario"><b>Usuario</b></label><br/>
-    		<input type="text"  name="email"/><br/>
+    		<h:inputText  value=" " name="email"/><br/>
     	<label for="psw"><b>Password</b></label><br/>
-   			<input type="password"  name="psw" id="psw" />
+   			<h:inputSecret type="password"  name="psw" id="psw" />
     	<br/>
-    <button type="submit" class="btnLogin" onclick="return validaLogIn()">Login</button>
-    <button type="button" class="btnCancel" onclick="closeForm()">Close</button>
+    <h:commandButton type="submit" class="btnLogin" onclick="return validaLogIn()" action=" ">Login</h:commandButton>
+    <h:commandButton type="button" class="btnCancel" onclick="closeForm()">Close</h:commandButton>
 		
 		 </h:form>
 	</div>
@@ -96,11 +96,11 @@ function validaRegistro() {
 	<form action="/action_page.php" class="formRegistro">
 	<h2><b>Registro:</b></h2>
 	<h:outputText for="tipoUsuario"><b>Tipo de Usuario:</b></h:outputText><br/>
-		<select id="tipoUsuario" name="tipoUsuario">
-		 	<option value="0">   </option>
-		 	<option value="cliente">Cliente</option>
-    		<option value="comerciante">Comerciante</option>
-		 </select><br/>
+		<h:selectOneMenu id="tipoUsuario" name="tipoUsuario">
+		 	<f:selectItem itemValue="0">   </f:selectItem>
+		 	<f:selectItem itemValue="cliente">Cliente</f:selectItem>
+    		<f:selectItem itemValue="comerciante">Comerciante</f:selectItem>
+		 </h:selectOneMenu><br/>
 	<h:outputText for="nombreUsuario"><b>Nombre:</b></h:outputText><br/>
     		<h:inputText type="text" name="nombreUsuario" id="nombreUsuario"/><br/>
     <h:outputText for="apellidoUsuario"><b>Apellido:</b></h:outputText><br/>

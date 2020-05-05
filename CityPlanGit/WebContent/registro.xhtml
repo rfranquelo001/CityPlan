@@ -39,19 +39,24 @@
 				<h2>
 					<b>Registro:</b>
 				</h2>
-				<label for="tipoUsuario"><b>Tipo de Usuario:</b></label><br /> <select
+				<label for="tipoUsuario"><b>Tipo de Usuario:</b></label><br /> 
+				<h:selectOneMenu
 					id="tipoUsuario" name="tipoUsuario">
-					<option value="0"></option>
-					<option value="cliente">Cliente</option>
-					<option value="comerciante">Comerciante</option>
-				</select><br /> <label for="nombreUsuario"><b>Nombre:</b></label><br /> <input
-					type="text" name="nombreUsuario" /><br /> <label
-					for="apellidoUsuario"><b>Apellido:</b></label><br /> <input
-					type="text" name="apellidoUsuario" /><br /> <label for="username"><b>Alias
-						de usuario:</b></label><br /> <input type="text" name="username" /><br /> <label
-					for="password"><b>Contraseña</b></label><br /> <input
-					type="password" name="password" /> <br />
-				<button type="submit" class="btnRegistro" onclick="return compruebaDatos()">Registrar</button>
+					<f:selectItem itemValue="0"> </f:selectItem>
+					<f:selectItem itemValue="cliente">Cliente</f:selectItem>
+					<f:selectItem itemValue="comerciante">Comerciante</f:selectItem>
+				</h:selectOneMenu><br /> 
+				<label for="nombreUsuario"><b>Nombre:</b></label><br /> 
+				<h:inputText name="nombreUsuario" value=" "/><br /> 
+				<label
+					for="apellidoUsuario"><b>Apellido:</b></label><br /> 
+					<h:inputText name="apellidoUsuario" value=" "/><br /> 
+					<label for="username"><b>Alias
+						de usuario:</b></label><br /> 
+						<h:inputText name="username" value=" "/><br /> <label
+					for="password"><b>Contraseña</b></label><br /> 
+					<h:inputText name="password" value=" "/> <br />
+				<h:commandButton class="btnRegistro" onclick="return compruebaDatos()" value=" ">Registrar</h:commandButton>
 			</form>
 
 		</div>

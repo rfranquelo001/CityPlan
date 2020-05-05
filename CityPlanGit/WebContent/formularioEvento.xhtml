@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+	<ui:composition template="/WEB-INF/templates/layout.xhtml">
+	<ui:define name="estilo">
+		<link rel="stylesheet" href="estiloCityPlan.css"/>
+	<link rel="stylesheet" href="estiloFormularioEvento.css"/>
+	</ui:define>
+	<ui:define name="funcionesJS">
+		<script>
+		function validaForm() {
+			
+			var titulo=document.getElementById("tituloEvento").value;
+			var resumen=document.getElementById("resumenEvento").value;
+			var descripcion=document.getElementById("descripcionEvento").value;
+			var fecha=document.getElementById("fechaEvento").value;
+			var hora=document.getElementById("horaEvento").value;
+			var localizacion=document.getElementById("localizacionEvento").value;
+			var filtros=document.getElementById("filtrosEvento").value;
+			var r=true;
+			if(titulo=""){
+				document.getElementById("tituloEvento").style.backgroundColor="yellow";
+				r=false;
+			}
+			if(resumen==""){
+				document.getElementById("resumenEvento").style.backgroundColor="yellow";
+				r=false;
+			}
+			if(descripcion==""){
+				document.getElementById("descripcionEvento").style.backgroundColor="yellow";
+				r=false;
+			}
+			if(fecha==""){
+				document.getElementById("fechaEvento").style.backgroundColor="yellow";
+				r=false;
+			}
+			if(hora==""){
+				document.getElementById("horaEvento").style.backgroundColor="yellow";
+				r=false;
+			}
+			if(localizacion==""){
+				document.getElementById("localizacionEvento").style.backgroundColor="yellow";
+				r=false;
+			}
+			if(filtro==""){
+				document.getElementById("filtrosEvento").style.backgroundColor="yellow";
+				r=false;
+			}
+			return r;
+		}
+		</script>
+		</ui:define>
+	<ui:define name="NombrePagina">CityPlan: Formulario Evento</ui:define>
+	<ui:define name="Contenido">
+	<div class="colMain">
+	<h2>Formulario de anuncio de evento:</h2>
+	
+	<h:form class="formEvento" method="post" action="" enctype="multipart/form-data">
+	
+  <label for="tituloEvento">Título del Evento:</label><br/>
+  <input type="text" id="tituloEvento" name="tituloEvento"/><br/>
+  
+  <label for="imgEvento">Imagen del evento:</label><br/>
+  <input type="file" id="imgEvento" name="imgEvento" accept=".pdf,.jpg,.png"/><br/>
+   
+   <label for="resumenEvento">Descripción breve del evento (texto de 2 líneas)</label><br/>
+   <textarea id="resumenEvento" name="resumenEvento" rows="4" cols="50"></textarea>
+  <br/>
+  
+  <label for="descripcionEvento">Descripción completa del evento</label><br/>
+  <textarea id="descripcionEvento" name="descripcionEvento" rows="15" cols="50"></textarea><br/>
+  
+  <label for="fechaEvento">Fecha del evento:</label><br/>
+  <input type="text" id="fechaEvento" name="fechaEvento"/><br/> 
+  
+  <label for="horaEvento">Hora del evento:</label><br/>
+  <input type="text" id="horaEvento" name="horaEvento"/><br/> 
+  
+  <label for="localizacionEvento">Localización del evento:</label><br/>
+  <input type="text" id="localizacionEvento" name="localizacionEvento"/><br/> 
+  
+  <label for="filtrosEvento">Filtros asociados al evento:</label><br/>
+  <input type="text" id="filtrosEvento" name="filtrosEvento"/>
+  <br/> 
+ 
+  <input type="submit" value="Enviar" id="btnEnviar" class="btnEnviar" onclick="return validaForm()"/>
+</h:form> 
+		
+</div>
+	
+	
+	
+	
+	</ui:define>
+	
+	</ui:composition>
+</html>

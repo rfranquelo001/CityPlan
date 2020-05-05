@@ -197,4 +197,12 @@ public class ClaseEJB implements Serializable {
 		Opinion o = em.find(Opinion.class, idOpinion);
 		em.remove(o);
 	}
+
+	public float getValoracionBD() {
+
+		Valoracion val = (Valoracion) em.createNamedQuery("Opinion.Valoracion");
+		float valoracionBD = val.getTotalValoracion();
+		return valoracionBD;
+
+	}
 }

@@ -22,77 +22,93 @@
 		<p id="enunciado" class="enunciado">A continuación se muestran una serie de cuestiones para que pueda valorar diferentes aspectos del evento al que ha asistido, utilizando una escala del 1 al 5, donde 1 es "Pobre" y 5 es "Excelente":
 </p>
 	<!-- Inicio formulario -->
-		<form id="formulario" class="formulario">
+		<h:form id="formulario" class="formulario">
 			<div class="formValoracion" id="section1">
 				<!-- Pregunta 1 -->
 				<br/><label for="p1" class="pregunta">1) Facilidad para inscribirse en el evento: </label><br/> 
-					<input type="radio" id="p2" name="p1"/>1
-					<input type="radio" id="p2" name="p1"/>2
-					<input type="radio" id="p2" name="p1"/>3
-					<input type="radio" id="p2" name="p1"/>4
-					<input type="radio" id="p2" name="p1"/>5<br/>
+					<h:selectOneRadio value="">
+					<f:selectItem itemValue = "1" itemLabel = "p1" />
+					<f:selectItem itemValue = "2" itemLabel = "p1" /> 
+					<f:selectItem itemValue = "3" itemLabel = "p1" /> 
+					<f:selectItem itemValue = "4" itemLabel = "p1" /> 
+					<f:selectItem itemValue = "5" itemLabel = "p1" />  
+					</h:selectOneRadio><br/>
 				<!-- Pregunta 2 -->
 				<label for="p2" class="pregunta">2) Información previa sobre detalles prácticos del evento:</label><br/> 
-				<input type="radio" id="p2" name="p2"/>1
-				<input type="radio" id="p2" name="p2"/>2
-				<input type="radio" id="p2" name="p2"/>3
-					<input type="radio" id="p2" name="p2"/>4
-					<input type="radio" id="p2" name="p2"/>5<br/>
+				<h:selectOneRadio value="">
+					<f:selectItem itemValue = "1" itemLabel = "p2" />
+					<f:selectItem itemValue = "2" itemLabel = "p2" /> 
+					<f:selectItem itemValue = "3" itemLabel = "p2" /> 
+					<f:selectItem itemValue = "4" itemLabel = "p2" /> 
+					<f:selectItem itemValue = "5" itemLabel = "p2" />  
+					</h:selectOneRadio><br/><br/>
 				<!-- Pregunta 3 -->
 				<label for="p3" class="pregunta">3) Calidad de las instalaciones:</label><br/>
-					<input type="radio" id="p3" name="p3"/>1
-					<input type="radio" id="p3" name="p3"/>2
-					<input type="radio" id="p3" name="p3"/>3
-					<input type="radio" id="p3" name="p3"/>4
-					<input type="radio" id="p3" name="p3"/>5<br/>
+					<h:selectOneRadio value="">
+					<f:selectItem itemValue = "1" itemLabel = "p3" />
+					<f:selectItem itemValue = "2" itemLabel = "p3" /> 
+					<f:selectItem itemValue = "3" itemLabel = "p3" /> 
+					<f:selectItem itemValue = "4" itemLabel = "p3" /> 
+					<f:selectItem itemValue = "5" itemLabel = "p3" />  
+					</h:selectOneRadio><br/><br/>
 				<!-- Pregunta 4 -->
 				<label for="p4" class="pregunta">4) El evento en general:</label><br/>
-					<input type="radio" id="p4" name="p4"/>1
-					<input type="radio" id="p4" name="p4"/>2
-					<input type="radio" id="p4" name="p4"/>3
-					<input type="radio" id="p4" name="p4"/>4
-					<input type="radio" id="p4" name="p4"/>5<br/>
+					<h:selectOneRadio value="">
+					<f:selectItem itemValue = "1" itemLabel = "p4" />
+					<f:selectItem itemValue = "2" itemLabel = "p4" /> 
+					<f:selectItem itemValue = "3" itemLabel = "p4" /> 
+					<f:selectItem itemValue = "4" itemLabel = "p4" /> 
+					<f:selectItem itemValue = "5" itemLabel = "p4" />  
+					</h:selectOneRadio><br/><br/>
 				<!-- Pregunta 5 -->
 				<label for="p5" class="pregunta">5)¿Cómo calificarías la organización del evento?</label><br/>
-					<input type="radio" id="p5" name="p5"/>1
-					<input type="radio" id="p5" name="p5"/>2
-					<input type="radio" id="p5" name="p5"/>3
-					<input type="radio" id="p5" name="p5"/>4
-					<input type="radio" id="p5" name="p5"/>5<br/>
+					<h:selectOneRadio value="">
+					<f:selectItem itemValue = "1" itemLabel = "p5" />
+					<f:selectItem itemValue = "2" itemLabel = "p5" /> 
+					<f:selectItem itemValue = "3" itemLabel = "p5" /> 
+					<f:selectItem itemValue = "4" itemLabel = "p5" /> 
+					<f:selectItem itemValue = "5" itemLabel = "p5" />  
+					</h:selectOneRadio><br/><br/>
 				<!-- Pregunta 6 -->
 				<label for="p6" class="pregunta">6) Por favor, indica tu nivel de acuerdo para la declaración: La duración del evento fue perfecta. (Ni muy largo ni muy corto):</label><br/>
-					<input type="radio" id="p6" name="p6"/>1
-					<input type="radio" id="p6" name="p6"/>2
-				<input type="radio" id="p6" name="p6"/>3
-					<input type="radio" id="p6" name="p6"/>4
-					<input type="radio" id="p6" name="p6"/>5<br/>
+					<h:selectOneRadio value="">
+					<f:selectItem itemValue = "1" itemLabel = "p6" />
+					<f:selectItem itemValue = "2" itemLabel = "p6" /> 
+					<f:selectItem itemValue = "3" itemLabel = "p6" /> 
+					<f:selectItem itemValue = "4" itemLabel = "p6" /> 
+					<f:selectItem itemValue = "5" itemLabel = "p6" />  
+					</h:selectOneRadio><br/><br/>
 				<label for="p7" class="pregunta">7)El precio es: (1 “Nada adecuado”, 5 “Muy adecuado”)</label><br/>
-					<input type="radio" id="p7" name="p7"/>1
-					<input type="radio" id="p7" name="p7"/>2
-					<input type="radio" id="p7" name="p7"/>3
-					<input type="radio" id="p7" name="p7"/>4
-					<input type="radio" id="p7" name="p7"/>5<br/>
+					<h:selectOneRadio value="">
+					<f:selectItem itemValue = "1" itemLabel = "p7" />
+					<f:selectItem itemValue = "2" itemLabel = "p7" /> 
+					<f:selectItem itemValue = "3" itemLabel = "p7" /> 
+					<f:selectItem itemValue = "4" itemLabel = "p7" /> 
+					<f:selectItem itemValue = "5" itemLabel = "p7" />  
+					</h:selectOneRadio><br/><br/>
 				<label for="p8" class="pregunta">8)¿Recomendarías este evento a otras personas?</label><br/>
-						<input type="radio" id="p8" name="p8"/>1
-						<input type="radio" id="p8" name="p8"/>2
-						<input type="radio" id="p8" name="p8"/>3
-						<input type="radio" id="p8" name="p8"/>4
-					<input type="radio" id="p8" name="p8"/>5<br/>
+						<h:selectOneRadio value="">
+					<f:selectItem itemValue = "1" itemLabel = "p8" />
+					<f:selectItem itemValue = "2" itemLabel = "p8" /> 
+					<f:selectItem itemValue = "3" itemLabel = "p8" /> 
+					<f:selectItem itemValue = "4" itemLabel = "p8" /> 
+					<f:selectItem itemValue = "5" itemLabel = "p8" />  
+					</h:selectOneRadio><br/><br/>
 			</div >
 				<br/>
 		
-			<input type="submit" class="btnEnviar" value="Enviar" onclick="msg()"/>
+			<h:commandButton class="btnEnviar" value="Enviar" onclick="msg()" action="" />
 			<br/>
 		<div class="formOpinion">
 		<h3>Opinión sobre el evento</h3>
 		<p id="enunciado">En este espacio podrás escribir una breve opinión sobre el evento al que has asistido:</p>
 		<br/>
-		<textarea id="message" name="message" class="textoOpinion" rows="10" cols="55"></textarea><br/> 
+		<h:inputTextarea id="message" name="message" class="textoOpinion" rows="20" cols="55" value=""/><br/> 
 		<br/>
-		<input type="submit" class="btnEnviar" value="Enviar" onclick="msg()"/>
+		<h:commandButton class="btnEnviar" value="Enviar" onclick="msg()" action=""/>
 		<br/>
 		</div>
-		</form>
+		</h:form>
 		
 <!-- Fin formulario -->
 

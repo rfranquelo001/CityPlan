@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import bl.ClaseEJB;
 import bl.Valoracion;
@@ -21,6 +22,7 @@ import dl.Opinion;
  */
 @WebServlet("/ServletCliente")
 public class ServletCliente extends HttpServlet {
+	// atiende los datos del formulario de valoracion de opinion.html
 	private static final long serialVersionUID = 1L;
 	@EJB
 	ClaseEJB ejb;
@@ -65,6 +67,8 @@ public class ServletCliente extends HttpServlet {
 		Opinion opinion = new Opinion();
 		Valoracion valoracion = new Valoracion();
 		float totalValoracion, totValEvento;
+
+		HttpSession session = request.getSession(true);
 
 		// ESTE METODO ME LO CARGARÍA, EN LA BBDD VALORACION SE GUARDA COMO UN CAMPO DE
 		// OPINION

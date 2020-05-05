@@ -42,9 +42,12 @@ function msgOpinion(){
 		<h3>Valoración del evento</h3>
 		<p id="enunciado" class="enunciado">A continuación se muestran una serie de cuestiones para que pueda valorar diferentes aspectos del evento al que ha asistido, utilizando una escala del 1 al 5, donde 1 es "Pobre" y 5 es "Excelente":
 </p>
+
 	<!-- Inicio formulario -->
-		<form id="formulario" class="formulario">
+		<form id="formulario" method="post" action="/ServletCliente" class="formulario">
 			<section class="formValoracion" id="section1">
+				<p>Nombre evento:</p>
+				<input type="text" id="nombreEvento">
 				<!-- Pregunta 1 -->
 				<br/><label for="p1" class="pregunta">1) Facilidad para inscribirse en el evento: </label><br/> 
 					<input type=radio id="p1" name="p1">1

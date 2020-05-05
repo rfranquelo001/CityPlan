@@ -82,7 +82,7 @@ public class ServletCliente extends HttpServlet {
 		// calculo totalValoracion
 		// HACE FALTA OBTENER DEL EJB LA VALORACION ACTUAL DEL EVENTO
 		evento = ejb.getEvento(request.getParameter("nombreEvento"));
-		totalValoracionBD = opinion.getValoracion();
+		totalValoracionBD = ejb.getValoracionBD();
 		totalValoracion = valoracion.calculaValoracion(Integer.parseInt(request.getParameter("p1")),
 				Integer.parseInt(request.getParameter("p2")), Integer.parseInt(request.getParameter("p3")),
 				Integer.parseInt(request.getParameter("p4")), Integer.parseInt(request.getParameter("p5")),

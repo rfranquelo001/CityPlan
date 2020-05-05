@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="/WEB-INF/templates/layout.xhtml">
+	<ui:define name="estilo">
+		<link rel="stylesheet" type="text/css" href="/estiloAgenda.css" />
+	</ui:define>
+	<ui:define name="NombrePagina">CityPlan: Agenda</ui:define>
+	<ui:define name="Contenido">
+		<!-- Google Tag Manager (noscript) -->
+		<noscript>
+			<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5RJNHD5"
+				height="0" width="0" style="display: none; visibility: hidden"></iframe>
+		</noscript>
+		<!-- End Google Tag Manager (noscript) -->
+		<div class="colMain">
+			<!-- Tabla agenda-->
+			<div class="agenda">
+				<table class="evento">
+					<tr>
+						<td class="dia">12</td>
+						<td class="info">evento</td>
+					</tr>
+					<tr>
+						<td class="dia">12</td>
+						<td class="info">evento</td>
+					</tr>
+					<tr>
+						<td class="dia">12</td>
+						<td class="info">evento</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+	</ui:define>
+</ui:composition>
+</html>

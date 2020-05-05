@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+	<ui:composition template="/WEB-INF/templates/layout.xhtml">
+	<ui:define name="estilo">
+		<link rel="stylesheet" href="estiloOpinion.css"/>
+	</ui:define>
+	<ui:define name="funcionesJS">
+	<script>
+		function msg(){
+			alert("Gracias por su valoracion");
+			}
+	</script>
+	</ui:define>
+	<ui:define name="NombrePagina">CityPlan: Opinion</ui:define>
+	<ui:define name="Contenido">
+	<div class="colMain">
+		<h3>Valoración del evento</h3>
+		<p id="enunciado" class="enunciado">A continuación se muestran una serie de cuestiones para que pueda valorar diferentes aspectos del evento al que ha asistido, utilizando una escala del 1 al 5, donde 1 es "Pobre" y 5 es "Excelente":
+</p>
+	<!-- Inicio formulario -->
+		<form id="formulario" class="formulario">
+			<div class="formValoracion" id="section1">
+				<!-- Pregunta 1 -->
+				<br/><label for="p1" class="pregunta">1) Facilidad para inscribirse en el evento: </label><br/> 
+					<input type="radio" id="p2" name="p1"/>1
+					<input type="radio" id="p2" name="p1"/>2
+					<input type="radio" id="p2" name="p1"/>3
+					<input type="radio" id="p2" name="p1"/>4
+					<input type="radio" id="p2" name="p1"/>5<br/>
+				<!-- Pregunta 2 -->
+				<label for="p2" class="pregunta">2) Información previa sobre detalles prácticos del evento:</label><br/> 
+				<input type="radio" id="p2" name="p2"/>1
+				<input type="radio" id="p2" name="p2"/>2
+				<input type="radio" id="p2" name="p2"/>3
+					<input type="radio" id="p2" name="p2"/>4
+					<input type="radio" id="p2" name="p2"/>5<br/>
+				<!-- Pregunta 3 -->
+				<label for="p3" class="pregunta">3) Calidad de las instalaciones:</label><br/>
+					<input type="radio" id="p3" name="p3"/>1
+					<input type="radio" id="p3" name="p3"/>2
+					<input type="radio" id="p3" name="p3"/>3
+					<input type="radio" id="p3" name="p3"/>4
+					<input type="radio" id="p3" name="p3"/>5<br/>
+				<!-- Pregunta 4 -->
+				<label for="p4" class="pregunta">4) El evento en general:</label><br/>
+					<input type="radio" id="p4" name="p4"/>1
+					<input type="radio" id="p4" name="p4"/>2
+					<input type="radio" id="p4" name="p4"/>3
+					<input type="radio" id="p4" name="p4"/>4
+					<input type="radio" id="p4" name="p4"/>5<br/>
+				<!-- Pregunta 5 -->
+				<label for="p5" class="pregunta">5)¿Cómo calificarías la organización del evento?</label><br/>
+					<input type="radio" id="p5" name="p5"/>1
+					<input type="radio" id="p5" name="p5"/>2
+					<input type="radio" id="p5" name="p5"/>3
+					<input type="radio" id="p5" name="p5"/>4
+					<input type="radio" id="p5" name="p5"/>5<br/>
+				<!-- Pregunta 6 -->
+				<label for="p6" class="pregunta">6) Por favor, indica tu nivel de acuerdo para la declaración: La duración del evento fue perfecta. (Ni muy largo ni muy corto):</label><br/>
+					<input type="radio" id="p6" name="p6"/>1
+					<input type="radio" id="p6" name="p6"/>2
+				<input type="radio" id="p6" name="p6"/>3
+					<input type="radio" id="p6" name="p6"/>4
+					<input type="radio" id="p6" name="p6"/>5<br/>
+				<label for="p7" class="pregunta">7)El precio es: (1 “Nada adecuado”, 5 “Muy adecuado”)</label><br/>
+					<input type="radio" id="p7" name="p7"/>1
+					<input type="radio" id="p7" name="p7"/>2
+					<input type="radio" id="p7" name="p7"/>3
+					<input type="radio" id="p7" name="p7"/>4
+					<input type="radio" id="p7" name="p7"/>5<br/>
+				<label for="p8" class="pregunta">8)¿Recomendarías este evento a otras personas?</label><br/>
+						<input type="radio" id="p8" name="p8"/>1
+						<input type="radio" id="p8" name="p8"/>2
+						<input type="radio" id="p8" name="p8"/>3
+						<input type="radio" id="p8" name="p8"/>4
+					<input type="radio" id="p8" name="p8"/>5<br/>
+			</div >
+				<br/>
+		
+			<input type="submit" class="btnEnviar" value="Enviar" onclick="msg()"/>
+			<br/>
+		<div class="formOpinion">
+		<h3>Opinión sobre el evento</h3>
+		<p id="enunciado">En este espacio podrás escribir una breve opinión sobre el evento al que has asistido:</p>
+		<br/>
+		<textarea id="message" name="message" class="textoOpinion" rows="10" cols="55"></textarea><br/> 
+		<br/>
+		<input type="submit" class="btnEnviar" value="Enviar" onclick="msg()"/>
+		<br/>
+		</div>
+		</form>
+		
+<!-- Fin formulario -->
+
+	</div>
+
+	</ui:define>
+	</ui:composition>
+</html>

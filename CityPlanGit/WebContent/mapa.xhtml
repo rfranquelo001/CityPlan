@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+	<ui:composition template="/WEB-INF/templates/layout.xhtml">
+	<ui:define name="estilo">
+		<link rel="stylesheet" href="/estiloMapa.css"/>
+	</ui:define>
+	<ui:define name="NombrePagina">CityPlan: Mapa</ui:define>
+	<ui:define name="Contenido">
+	<div class="colMain">
+	<h2>Mapa</h2>
+
+	<div class="layout">
+		<div class="gridMap" id="googleMap"
+						style="width: 100%; height: 400px;"></div>
+<script>
+        function myMap() {
+        // The location of Bilbao
+        var bilbao = {lat: 43.262985, lng: -2.935013};
+        // The map, centered at Bilbao
+        var map = new google.maps.Map(
+        document.getElementById('googleMap'), {zoom: 4, center: bilbao});
+        // The marker, positioned at Uluru
+        var marker = new google.maps.Marker({position: bilbao, map: map});
+        }
+</script>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=myMap"></script>
+	</div>
+
+</div>
+	</ui:define>
+	</ui:composition>
+</html>

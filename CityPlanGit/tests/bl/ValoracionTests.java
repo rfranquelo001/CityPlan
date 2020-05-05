@@ -65,7 +65,7 @@ public class ValoracionTests {
 		int p6 = 6;
 		int p7 = 7;
 		int p8 = 8;
-
+		double res = 4.5;
 		float result = val.calculaValoracion(p1, p2, p3, p4, p5, p6, p7, p8);
 		// assertEquals();
 

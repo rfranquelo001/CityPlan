@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+	<ui:composition template="/WEB-INF/templates/layout.xhtml">
+	<ui:define name="estilo">
+		<link rel="stylesheet" href="estiloLogin.css"/>
+		<link rel="stylesheet" href="estiloRegistro.css"/>
+	</ui:define>
+	<ui:define name="funcionesJS">
+		<script>
+function openForm() {
+  document.getElementById("formLogin").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("formLogin").style.display = "none";
+  document.getElementById("formRegistro").style.display = "none";
+}
+function validaLogIn() {
+	var tipo= document.getElementById("tipoUsuario");
+	var usuario=document.getElementById("usuario");
+	var passw=document.getElementById("psw");
+	var r=true;
+	if(tipo==""){
+		document.getElementById("tipoUsuario").style.backgroundColor("yellow");
+		r=false;
+	}else if(usuario==""){
+		document.getElementById("usuario").style.backgroundColor("yellow");
+		r=false;
+	}else if(passw==""){
+		document.getElementById("psw").style.backgroundColor("yellow");
+		r=false;
+	}
+	return r;
+}
+function validaRegistro() {
+	var tipo= document.getElementById("tipoUsuario");
+	var nombre= document.getElementById("nombreUsuario");
+	var apellido= document.getElementById("apellidoUsuario");
+	var userName= document.getElementById("username");
+	var pass= document.getElementById("password");
+	var r=true;
+
+	if(tipo==""){
+		document.getElementById("tipoUsuario").style.backgroundColor("yellow");
+		r=false;	
+	}else if(nombre==""){
+		document.getElementById("nombre").style.backgroundColor("yellow");
+		r=false;	
+	}else if(apellido==""){
+		document.getElementById("apellido").style.backgroundColor("yellow");
+		r=false;
+	}else if(userName==""){
+		document.getElementById("userName").style.backgroundColor("yellow");
+		r=false;
+	}else if(pass==""){
+		document.getElementById("pass").style.backgroundColor("yellow");
+		r=false;
+	}
+	return r;
+}
+
+</script>
+	</ui:define>
+	<ui:define name="NombrePagina">CityPlan: LogIn</ui:define>
+	<ui:define name="Contenido">
+	<div class="colMain">
+	<button class="openLogin" onclick="document.getElementById('formLogin').style.display='block'"
+					style="width: center;font-size:0.5em;"><b>Log In</b></button>
+	<button class="openRegistro" onclick="document.getElementById('formRegistro').style.display='block'"
+					style="width: center;font-size:0.5em;"><b>Registrarse</b></button>
+	
+	<div class="formLogin" id="formLogin">
+		 <form action="/action_page.php" class="formLoginContainer">
+		 <h2><b>Log In</b></h2>
+		 <label for="tipoUsuario"><b>Tipo de Usuario:</b></label><br/>
+		 <select id="tipoUsuario" name="tipoUsuario">
+		 	<option value="0">   </option>
+		 	<option value="cliente">Cliente</option>
+    		<option value="comerciante">Comerciante</option>
+		 </select><br/>
+		 <label for="usuario"><b>Usuario</b></label><br/>
+    		<input type="text"  name="email"/><br/>
+    	<label for="psw"><b>Password</b></label><br/>
+   			<input type="password"  name="psw" id="psw" />
+    	<br/>
+    <button type="submit" class="btnLogin" onclick="return validaLogIn()">Login</button>
+    <button type="button" class="btnCancel" onclick="closeForm()">Close</button>
+		
+		 </form>
+	</div>
+	<div class="formRegistro" id="formRegistro" style="display:none;">
+	<form action="/action_page.php" class="formRegistro">
+	<h2><b>Registro:</b></h2>
+	<label for="tipoUsuario"><b>Tipo de Usuario:</b></label><br/>
+		<select id="tipoUsuario" name="tipoUsuario">
+		 	<option value="0">   </option>
+		 	<option value="cliente">Cliente</option>
+    		<option value="comerciante">Comerciante</option>
+		 </select><br/>
+	<label for="nombreUsuario"><b>Nombre:</b></label><br/>
+    		<input type="text" name="nombreUsuario" id="nombreUsuario"/><br/>
+    <label for="apellidoUsuario"><b>Apellido:</b></label><br/>
+    		<input type="text" name="apellidoUsuario" id="apellidoUsuario"/><br/>
+	<label for="username"><b>Alias de usuario:</b></label><br/>
+    		<input type="text" name="username" id="username"/><br/>
+   	<label for="password"><b>Contraseña</b></label><br/>
+   			<input type="password" name="password" id="password"/>
+    	<br/>	
+    <button type="submit" class="btnRegistro">Registrar</button>
+    <button type="button" class="btnCancel" onclick="closeForm()">Close</button>
+	</form>
+	
+	</div>
+</div>
+	
+	
+	
+	</ui:define>
+	</ui:composition>
+</html>

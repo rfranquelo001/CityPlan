@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="/WEB-INF/templates/layout.xhtml">
+	<ui:define name="estilo">
+		<link rel="stylesheet" href="estiloRegistro.css" />
+	</ui:define>
+	<ui:define name="funcionesJS">
+		<script>
+		function compruebaDatos(){
+			var r;
+			if(document.getElementById("tipoUsuario")=="0"){
+				document.getElementById("tipoUsuario").style.backgroundColor("yellow");
+				r=false;
+			}else if(document.getElementById("nombreUsuario")==null){
+				document.getElementById("nombreUsuario").style.backgroundColor("yellow");
+				r=false;
+			}else if(document.getElementById("apellidoUsuario")==null){
+				document.getElementById("apellidoUsuario").style.backgroundColor("yellow");
+				r=false;
+			}else if(document.getElementById("username")==null){
+				document.getElementById("username").style.backgroundColor("yellow");
+				r=false;
+			}else if(document.getElementById("password")==null){
+				document.getElementById("password").style.backgroundColor("yellow");
+				r=false;
+			}
+			return r;
+		}
+	</script>
+	</ui:define>
+	<ui:define name="NombrePagina">CityPlan: Registro</ui:define>
+	<ui:define name="Contenido">
+		<div class="colMain">
+			<form action="/action_page.php" class="formRegistro">
+				<h2>
+					<b>Registro:</b>
+				</h2>
+				<label for="tipoUsuario"><b>Tipo de Usuario:</b></label><br /> <select
+					id="tipoUsuario" name="tipoUsuario">
+					<option value="0"></option>
+					<option value="cliente">Cliente</option>
+					<option value="comerciante">Comerciante</option>
+				</select><br /> <label for="nombreUsuario"><b>Nombre:</b></label><br /> <input
+					type="text" name="nombreUsuario" /><br /> <label
+					for="apellidoUsuario"><b>Apellido:</b></label><br /> <input
+					type="text" name="apellidoUsuario" /><br /> <label for="username"><b>Alias
+						de usuario:</b></label><br /> <input type="text" name="username" /><br /> <label
+					for="password"><b>Contraseña</b></label><br /> <input
+					type="password" name="password" /> <br />
+				<button type="submit" class="btnRegistro" onclick="return compruebaDatos()">Registrar</button>
+			</form>
+
+		</div>
+
+	</ui:define>
+</ui:composition>
+</html>

@@ -63,46 +63,52 @@
 
 				<label for="tituloEvento">Título del Evento:</label>
 				<br />
-				<input type="text" id="tituloEvento" name="tituloEvento" />
+				<h:inputText id="tituloEvento" name="tituloEvento" value="" required="true"   
+				requiredMessage="Introduzca un nombre para el evento"/>
 				<br />
 
 				<label for="imgEvento">Imagen del evento:</label>
 				<br />
-				<input type="file" id="imgEvento" name="imgEvento"
+				<h:inputFile id="imgEvento" name="imgEvento"
 					accept=".pdf,.jpg,.png" />
 				<br />
 
 				<label for="resumenEvento">Descripción breve del evento
 					(texto de 2 líneas)</label>
 				<br />
-				<textarea id="resumenEvento" name="resumenEvento" rows="4" cols="50"></textarea>
+				<h:inputTextarea id="resumenEvento" name="resumenEvento" rows="4" cols="50" required="true"   
+				requiredMessage="Introduzca un resumen del evento"></h:inputTextarea>
 				<br />
 
 				<label for="descripcionEvento">Descripción completa del
 					evento</label>
 				<br />
-				<textarea id="descripcionEvento" name="descripcionEvento" rows="15"
-					cols="50"></textarea>
+				<h:inputTextarea id="descripcionEvento" name="descripcionEvento" rows="15"
+					cols="50" required="true"   
+				requiredMessage="Introduzca una descripción para el evento"></h:inputTextarea>
 				<br />
 
 				<label for="fechaEvento">Fecha del evento:</label>
 				<br />
-				<input type="text" id="fechaEvento" name="fechaEvento" />
+				<h:inputTextarea id="fechaEvento" name="fechaEvento" required="true"   
+				requiredMessage="Indique la fecha del evento" />
 				<br />
 
 				<label for="horaEvento">Hora del evento:</label>
 				<br />
-				<input type="text" id="horaEvento" name="horaEvento" />
+				<h:inputText id="horaEvento" name="horaEvento" required="true"   
+				requiredMessage="Indique la hora del evento"/>
 				<br />
 
 				<label for="localizacionEvento">Localización del evento:</label>
 				<br />
-				<input type="text" id="localizacionEvento" name="localizacionEvento" />
+				<h:inputText id="localizacionEvento" name="localizacionEvento" required="true"   
+				requiredMessage="Indique la ubicación del evento" />
 				<br />
 
 				<label for="filtrosEvento">Filtros asociados al evento:</label>
 				<br />
-				<input type="text" id="filtrosEvento" name="filtrosEvento" />
+				<h:inputText id="filtrosEvento" name="filtrosEvento" />
 				<br />
 
 				<input type="submit" value="Enviar" id="btnEnviar" class="btnEnviar"

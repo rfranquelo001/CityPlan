@@ -19,20 +19,20 @@
 		<div class="colMain">
 			<!-- Tabla agenda-->
 			<div class="agenda">
-				<table class="evento">
+			<h:form>
+				<h:dataTable value=" " class="evento">
 					<tr>
-						<td class="dia">12</td>
-						<td class="info">evento</td>
+					<h:column>
+					<f:facet name = "header" class="dia">Fecha</f:facet> 
+					</h:column>
 					</tr>
 					<tr>
-						<td class="dia">12</td>
-						<td class="info">evento</td>
+						<h:column>
+					<f:facet name = "header" class="info">Evento</f:facet> 
+					</h:column>
 					</tr>
-					<tr>
-						<td class="dia">12</td>
-						<td class="info">evento</td>
-					</tr>
-				</table>
+				</h:dataTable>
+			</h:form>
 			</div>
 		</div>
 

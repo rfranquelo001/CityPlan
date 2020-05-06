@@ -7,6 +7,32 @@
 <title>CityPlan: Agenda</title>
 <link rel="stylesheet" href="estiloCityPlan.css">
 <link rel="stylesheet" href="estiloAgenda.css">
+<script>
+var fecha=document.getElementById("fecha").value;
+var nombre= document.getElementById("nombre").value;
+
+$.ajax({
+      type:"GET",
+      url:"http://localhost:8080/CityPlanGit/agenda.html?callback=jsondata&web_fecha="+fecha+"&web_nombre="+nombre,
+      crossDomain:true,
+      dataType:'jsonp',
+      success: function jsondata(data)
+           {
+
+            var parsedata=JSON.parse(JSON.stringify(data));
+            var logindata=parsedata["Status"];
+
+            if("sucess"==logindata)
+            {   
+                alert("success");
+            }
+            else
+            {
+                alert("failed");
+            }
+          }  
+    }); 
+</script>
 </head>
 <body>
 
@@ -36,7 +62,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="agenda">
             <table class="evento">
             	<tr><td>Fecha</td><td>Evento</td></tr>
-                <tr><td class="dia">12</td><td class="info">evento</td></tr>
+                <tr><td class="dia" id="fecha">12</td><td class="info">evento</td></tr>
                 <tr><td class="dia">12</td><td class="info">evento</td></tr>
                 <tr><td class="dia">12</td><td class="info">evento</td></tr>
          </table>  

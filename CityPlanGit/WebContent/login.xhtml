@@ -6,8 +6,8 @@
 
 	<ui:composition template="/WEB-INF/templates/layout.xhtml">
 	<ui:define name="estilo">
-		<link rel="stylesheet" href="estiloLogin.css"/>
-		<link rel="stylesheet" href="estiloRegistro.css"/>
+		<link rel="stylesheet" href="/estiloLogin.css"/>
+		<link rel="stylesheet" href="/estiloRegistro.css"/>
 	</ui:define>
 	<ui:define name="funcionesJS">
 		<script>
@@ -85,10 +85,10 @@ function validaRegistro() {
 		 <label for="usuario"><b>Usuario</b></label><br/>
     		<h:inputText  value=" " name="email"/><br/>
     	<label for="psw"><b>Password</b></label><br/>
-   			<h:inputSecret type="password"  name="psw" id="psw" />
+   			<h:inputSecret  name="psw" id="psw" />
     	<br/>
-    <h:commandButton type="submit" class="btnLogin" onclick="return validaLogIn()" action=" ">Login</h:commandButton>
-    <h:commandButton type="button" class="btnCancel" onclick="closeForm()">Close</h:commandButton>
+    <h:commandButton value="submit" class="btnLogin" onclick="return validaLogIn()" action=" ">Login</h:commandButton>
+   	<h:commandButton value="button" class="btnCancel" onclick="closeForm()">Close</h:commandButton>
 		
 		 </h:form>
 	</div>
@@ -102,23 +102,20 @@ function validaRegistro() {
     		<f:selectItem itemValue="comerciante">Comerciante</f:selectItem>
 		 </h:selectOneMenu><br/>
 	<h:outputText for="nombreUsuario"><b>Nombre:</b></h:outputText><br/>
-    		<h:inputText type="text" name="nombreUsuario" id="nombreUsuario"/><br/>
+    		<h:inputText  name="nombreUsuario" id="nombreUsuario"/><br/>
     <h:outputText for="apellidoUsuario"><b>Apellido:</b></h:outputText><br/>
-    		<h:inputText type="text" name="apellidoUsuario" id="apellidoUsuario"/><br/>
+    		<h:inputText  name="apellidoUsuario" id="apellidoUsuario"/><br/>
 	<h:outputText for="username"><b>Alias de usuario:</b></h:outputText><br/>
-    		<h:inputText type="text" name="username" id="username"/><br/>
+    		<h:inputText  name="username" id="username"/><br/>
    	<h:outputText for="password"><b>Contraseña</b></h:outputText><br/>
-   			<h:inputText type="password" name="password" id="password"/>
+   			<h:inputSecret name="password" id="password"/>
     	<br/>	
-    <h:commandButton type="submit" class="btnRegistro">Registrar</h:commandButton>
-    <h:commandButton type="button" class="btnCancel" onclick="closeForm()">Close</h:commandButton>
+    <h:commandButton value="submit" class="btnRegistro">Registrar</h:commandButton>
+    <h:commandButton value="button" class="btnCancel" onclick="closeForm()">Close</h:commandButton>
 	</form>
 	
 	</div>
 </div>
-	
-	
-	
 	</ui:define>
 	</ui:composition>
 </html>

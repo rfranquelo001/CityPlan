@@ -74,7 +74,7 @@ function validaRegistro() {
 					style="width: center;font-size:0.5em;"><b>Registrarse</b></h:commandButton>
 	
 	<div class="formLogin" id="formLogin">
-		 <h:form action="/action_page.php" class="formLoginContainer">
+		 <h:form action=" " class="formLoginContainer">
 		 <h2><b>Log In</b></h2>
 		 <label for="tipoUsuario"><b>Tipo de Usuario:</b></label><br/>
 		 <h:selectOneMenu id="tipoUsuario" name="tipoUsuario">
@@ -93,7 +93,7 @@ function validaRegistro() {
 		 </h:form>
 	</div>
 	<div class="formRegistro" id="formRegistro" style="display:none;">
-	<form action="/action_page.php" class="formRegistro">
+	<h:form action=" " class="formRegistro">
 	<h2><b>Registro:</b></h2>
 	<h:outputText for="tipoUsuario"><b>Tipo de Usuario:</b></h:outputText><br/>
 		<h:selectOneMenu id="tipoUsuario" name="tipoUsuario">
@@ -112,7 +112,7 @@ function validaRegistro() {
     	<br/>	
     <h:commandButton value="submit" class="btnRegistro">Registrar</h:commandButton>
     <h:commandButton value="button" class="btnCancel" onclick="closeForm()">Close</h:commandButton>
-	</form>
+	</h:form>
 	
 	</div>
 </div>

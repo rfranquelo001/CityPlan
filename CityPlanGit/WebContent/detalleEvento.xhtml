@@ -14,28 +14,28 @@
 	<h2>Evento</h2>
 	<p>Descripcion detallada del evento:</p>
 
-<table class="mainTable">
+<h:dataTable class="mainTable">
   <tr class="rowTable">
-  	<td> <img src="city.jpg" height="80em" width="80em"/> </td>
-    <td class="textoDescr">Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion
-    </td>
+  	<h:column> <img src="city.jpg" height="80em" width="80em"/> </h:column>
+    <h:column class="textoDescr">Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion-Descripcion
+    </h:column>
   </tr>
   <tr>
   	<td></td>
   	<td>
-  		<table class="secondTable">
+  		<h:dataTable class="secondTable">
   			<tr class="rowTable">
   			
-    		<td class="dataTable"><a href="*">Localización del evento</a></td>
-    		<td class="dataTable"><a href="*">Leer Opiniones/Valoracion</a></td>
-    		<td class="dataTable"><a href="*">Dar opinión/valoración</a></td>
+    		<h:column class="dataTable"><h:link value = "Page 1" outcome = "Localización del evento">Localización del evento</h:link></h:column>
+    		<h:column class="dataTable"><h:link value = "Page 1" outcome = "Leer Opiniones/Valoracion" /></h:column>
+    		<h:column class="dataTable"><h:link value = "/opinion.xhtml" outcome = "Dar opinión/valoración" >Dar opinión/valoración</h:link></h:column>
   		</tr>
-  </table>
+  </h:dataTable>
   
   
   	</td>
   </tr>
-</table>
+</h:dataTable>
 
 </div>
 	

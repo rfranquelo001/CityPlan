@@ -16,7 +16,7 @@
 	<div class="layout">
 		<div class="gridMap" id="googleMap"
 						style="width: 100%; height: 400px;"></div>
-<script>
+<h:outputScript>
         function myMap() {
         // The location of Bilbao
         var bilbao = {lat: 43.262985, lng: -2.935013};
@@ -26,9 +26,9 @@
         // The marker, positioned at Uluru
         var marker = new google.maps.Marker({position: bilbao, map: map});
         }
-</script>
+</h:outputScript>
 
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=myMap"></script>
+<h:outputScript async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=myMap"></h:outputScript>
 	</div>
 
 </div>

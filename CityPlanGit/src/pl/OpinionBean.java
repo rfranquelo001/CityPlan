@@ -2,7 +2,6 @@ package pl;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -26,7 +25,7 @@ public class OpinionBean implements Serializable {
 	@EJB
 	private ClaseEJB ejb;
 	private Opinion opinion = new Opinion();
-	private List<Opinion> listadoOpiniones = new ArrayList<Opinion>();
+	private List<Opinion> listadoOpiniones = null;
 	// para tener la lista de opiniones para mostrar en
 	// detalleEvento.xhtml
 	private int idOpinion;
@@ -42,6 +41,7 @@ public class OpinionBean implements Serializable {
 	}
 
 	public void setOpinion(Opinion opinion) {
+		hayOpinion = true;
 		this.opinion = opinion;
 	}
 
@@ -85,7 +85,10 @@ public class OpinionBean implements Serializable {
 		this.evento = evento;
 	}
 
-	public List<Opinion> getListadoOpiniones() {
+	public List<Opinion> getListadoOpiniones(String ev) {
+		// Paso el nombre del evento para que el ejb busque en la BBDD las opiniones a
+		// partir del nombre
+		listadoOpiniones = ejb.getOpinionesEvento(ev);
 		return listadoOpiniones;
 	}
 

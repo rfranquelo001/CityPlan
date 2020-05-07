@@ -201,6 +201,11 @@ public class ClaseEJB implements Serializable {
 		Valoracion val = (Valoracion) em.createNamedQuery("Opinion.Valoracion");
 		float valoracionBD = val.getTotalValoracion();
 		return valoracionBD;
+	}
 
+	public List<Opinion> getOpinionesEvento(String evento) {
+		// no estoy segura de que la query esté bien si lo que quiero es el listado de
+		// todas las opiniones sobre el mismo evento
+		return (List<Opinion>) em.createNamedQuery("Opinion.findOpinionEvento").getResultList();
 	}
 }

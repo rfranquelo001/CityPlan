@@ -16,7 +16,7 @@ import dl.Filtro;
 
 @Named
 @ViewScoped // Igual tenemos que poner session para que mantenga los filtros del usuario
-			// dado de alta
+			// dado de alta y logeado
 public class AgendaBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 

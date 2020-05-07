@@ -6,8 +6,8 @@
 
 <ui:composition template="/WEB-INF/templates/layout.xhtml">
 	<ui:define name="estilo">
-		<link rel="stylesheet" href="estiloCityPlan.css" />
-		<link rel="stylesheet" href="estiloFormularioEvento.css" />
+		<link rel="stylesheet" type="text/css" href="/estiloCityPlan.css" />
+		<link rel="stylesheet" href="/estiloFormularioEvento.css" />
 	</ui:define>
 	<ui:define name="funcionesJS">
 		<script>
@@ -71,6 +71,7 @@
 				<br />
 				<h:inputFile id="imgEvento" name="imgEvento" value="#{eventoBean.evento.imagenEvento}"
 					accept=".pdf,.jpg,.png" />
+				<!-- copiar la URL de la imagen -->
 				<br />
 
 				<label for="resumenEvento">Descripción breve del evento

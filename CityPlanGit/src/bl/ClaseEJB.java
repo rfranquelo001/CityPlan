@@ -27,7 +27,6 @@ public class ClaseEJB implements Serializable {
 
 	// EVENTOS
 	// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 	@SuppressWarnings("unchecked")
 	public ArrayList<Evento> getEventos() {
 		ArrayList<Evento> listaEventos = new ArrayList<Evento>();

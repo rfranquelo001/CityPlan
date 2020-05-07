@@ -24,7 +24,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @NamedQueries({ @NamedQuery(name = "Evento.findAll", query = "SELECT e FROM Evento e"),
-		@NamedQuery(name = "Evento.findEvento", query = "SELECT e.nombreEvento FROM Evento e") })
+		@NamedQuery(name = "Evento.findEvento", query = "SELECT e FROM Evento e WHERE e.nombreEvento = :nombreEvento") })
 
 public class Evento implements Serializable {
 	private static final long serialVersionUID = 1L;

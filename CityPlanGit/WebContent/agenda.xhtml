@@ -20,19 +20,16 @@
 			<!-- Tabla agenda-->
 			<div class="agenda">
 			<h:form>
-				<h:dataTable value="#{agendaBean.listaEventos}" var="evento" class="evento">
-					<tr>
+				<h:dataTable value="#{agendaBean.getListaEventos()}" var="evento" class="evento">
 					<h:column>
 					<f:facet name = "header" class="dia">Fecha</f:facet> 
-					#{evento.fechaEvento}
+						<h:outputText value="#{evento.fechaEvento}"/>
 					</h:column>
-					</tr>
-					<tr>
-						<h:column>
+					<h:column>
 					<f:facet name = "header" class="info">Evento</f:facet> 
-					#{evento.nombreEvento}
+						<h:outputText value="#{evento.nombreEvento}"/>
 					</h:column>
-					</tr>
+					<!-- COMO MEJORA PONER COLUMNA CON LA IMAGEN DEL EVENTO (HAY QUE MIRARLO, CON LA URL) -->
 				</h:dataTable>
 			</h:form>
 			</div>

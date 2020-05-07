@@ -29,6 +29,72 @@ public class OpinionBean implements Serializable {
 	// para tener la lista de opiniones para mostrar en
 	// detalleEvento.xhtml
 	private int idOpinion;
+	private float p1, p2, p3, p4, p5, p6, p7, p8;
+
+	public float getP1() {
+		return p1;
+	}
+
+	public void setP1(float p1) {
+		this.p1 = p1;
+	}
+
+	public float getP2() {
+		return p2;
+	}
+
+	public void setP2(float p2) {
+		this.p2 = p2;
+	}
+
+	public float getP3() {
+		return p3;
+	}
+
+	public void setP3(float p3) {
+		this.p3 = p3;
+	}
+
+	public float getP4() {
+		return p4;
+	}
+
+	public void setP4(float p4) {
+		this.p4 = p4;
+	}
+
+	public float getP5() {
+		return p5;
+	}
+
+	public void setP5(float p5) {
+		this.p5 = p5;
+	}
+
+	public float getP6() {
+		return p6;
+	}
+
+	public void setP6(float p6) {
+		this.p6 = p6;
+	}
+
+	public float getP7() {
+		return p7;
+	}
+
+	public void setP7(float p7) {
+		this.p7 = p7;
+	}
+
+	public float getP8() {
+		return p8;
+	}
+
+	public void setP8(float p8) {
+		this.p8 = p8;
+	}
+
 	private String textoOpinion;
 	private BigDecimal valoracion;
 	private Cliente cliente;
@@ -65,8 +131,9 @@ public class OpinionBean implements Serializable {
 		return valoracion;
 	}
 
-	public void setValoracion(BigDecimal valoracion) {
-		this.valoracion = valoracion;
+	public void setValoracion() {
+		// Cambiamos el tipo de dato?
+		valoracion = (BigDecimal) ((p1 + p2 + p3 + p4 + p5 + p6 + p7 + p8) / 8);
 	}
 
 	public Cliente getCliente() {

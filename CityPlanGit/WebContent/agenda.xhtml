@@ -16,17 +16,17 @@
 				height="0" width="0" style="display: none; visibility: hidden"></iframe>
 		</noscript>
 		<!-- End Google Tag Manager (noscript) -->
-		<div class="colMain">
+		<div class='colMain'>
 			<!-- Tabla agenda-->
-			<div class="agenda">
+			<div class='agenda'>
 			<h:form>
-				<h:dataTable value="#{agendaBean.getListaEventos()}" var="evento" class="evento">
+				<h:dataTable value="#{agendaBean.getListaEventos()}" var="evento" class='evento'>
 					<h:column>
-					<f:facet name = "header" class="dia">Fecha</f:facet> 
+					<f:facet name = "header" class='dia'>Fecha</f:facet> 
 						<h:outputText value="#{evento.fechaEvento}"/>
 					</h:column>
 					<h:column>
-					<f:facet name = "header" class="info">Evento</f:facet> 
+					<f:facet name = "header" class='info'>Evento</f:facet> 
 						<h:outputText value="#{evento.nombreEvento}"/>
 					</h:column>
 					<!-- COMO MEJORA PONER COLUMNA CON LA IMAGEN DEL EVENTO (HAY QUE MIRARLO, CON LA URL) -->

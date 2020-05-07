@@ -8,17 +8,18 @@
 	<ui:define name="estilo">
 		<link rel="stylesheet" type="text/css" href="/estiloDetalleEvento.css" />
 	</ui:define>
-	<ui:define name="NombrePagina">CityPlan: Agenda</ui:define>
+	<ui:define name="NombrePagina">CityPlan: Detalles del Evento</ui:define>
 	<ui:define name="Contenido">
 	<div class="colMain">
 	<h2>Evento</h2>
 	<p>Descripcion detallada del evento:</p>
 
-<h:dataTable class="mainTable">
+<h:dataTable class="mainTable" value="#{eventoBean.evento}" var="e">
   <tr class="rowTable">
-  	<h:column> <h:graphicImage value="#{eventoBean.getImagenEvento()}"  height="80em" width="80em"/> </h:column>
+  	<h:column> <h:graphicImage value="#{e.imagenEvento}"  height="80em" width="80em"/> </h:column>
+    <!-- Imagen es un string con la url de la imagen entonces no se si es h:graphicImage -->
     <h:column class="textoDescr">
-    #{eventoBean.getDescripcionEvento()}
+    #{e.descripcionEvento}
     </h:column>
   </tr>
   <tr>

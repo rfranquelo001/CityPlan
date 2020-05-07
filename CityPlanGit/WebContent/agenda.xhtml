@@ -20,7 +20,7 @@
 			<!-- Tabla agenda-->
 			<div class='agenda'>
 			<h:form>
-				<h:dataTable value="#{agendaBean.getListaEventos()}" var="evento" class='evento'>
+				<h:dataTable value="#{agendaBean.getListaEventos()}" var="evento" class='evento' border="1">
 					<h:column>
 					<f:facet name = "header" class='dia'>Fecha</f:facet> 
 						<h:outputText value="#{evento.fechaEvento}"/>

@@ -25,7 +25,12 @@ public class AgendaBean implements Serializable {
 	// private List<Evento> listaEventos;
 
 	public List<Evento> getListaEventos() {
-		ArrayList<Evento> listaEventos = ejb.getEventos();
+		List<Evento> listaEventos = ejb.getEventos();
+		String holi = listaEventos.get(0).getNombreEvento();
+		String holi2 = listaEventos.get(1).getNombreEvento();
+		System.out.println(holi);
+		System.out.println(holi2);
+		System.out.println("holi\n holi\n holi\n holi\n holi\n holi\n holi\n");
 		return listaEventos;
 	}
 

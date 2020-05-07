@@ -2,6 +2,7 @@ package bl;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -28,10 +29,8 @@ public class ClaseEJB implements Serializable {
 	// EVENTOS
 	// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	@SuppressWarnings("unchecked")
-	public ArrayList<Evento> getEventos() {
-		ArrayList<Evento> listaEventos = new ArrayList<Evento>();
-		listaEventos = (ArrayList<Evento>) em.createNamedQuery("Evento.findAll").getResultList();
-		return listaEventos;
+	public List<Evento> getEventos() {
+		return em.createNamedQuery("Evento.findAll").getResultList();
 	}
 
 	// Evento tiene un comerciante, uno o muchos filtros, una o muchas opiniones

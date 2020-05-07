@@ -30,7 +30,7 @@ public class ClaseEJB implements Serializable {
 	// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	@SuppressWarnings("unchecked")
 	public List<Evento> getEventos() {
-		return em.createNamedQuery("Evento.findAll").getResultList();
+		return (List<Evento>) em.createNamedQuery("Evento.findAll").getResultList();
 	}
 
 	// Evento tiene un comerciante, uno o muchos filtros, una o muchas opiniones

@@ -135,4 +135,16 @@ public class EventoBean implements Serializable {
 		this.opinions = opinions;
 	}
 
+	// añadir Evento recogido en el formulario a la BD:
+	public void addEventoBD(Evento ev) {
+		// necesario obtener idComerciante asociado al evento:
+		// op1:
+		// recoger en el formulario nombreComerciante, buscar en la BBDD idComerciante
+		// asociado al nombreComerciante
+		// poner idComerciante en aniadirEvento
+		// acordarse de ir a formularioEvento.xhtml y en h:commandButton corregir
+		// parametros introducidos en metodo addEvento
+		ejb.aniadirEvento(ev, idComerciante);
+	}
+
 }

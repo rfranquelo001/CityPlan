@@ -64,7 +64,7 @@ public class ServletCliente extends HttpServlet {
 		PrintWriter pw = response.getWriter();
 
 		Evento evento;
-		Opinion opinion;
+		Opinion opinion = new Opinion();
 		Valoracion valoracion = new Valoracion();
 		float totalValoracion, totalValoracionBD, totValEvento;
 
@@ -108,6 +108,7 @@ public class ServletCliente extends HttpServlet {
 		// opinion.setEvento(evento);>>COMO LO HAGO???
 
 		opinion.setTextoOpinion(request.getParameter("textoOpinion"));
+		opinion.setEvento(evento);
 		opinion.setValoracion(BigDecimal.valueOf(totalValoracion));
 
 		// valoracion.setCliente(cliente);>>COMO LO HAGO???

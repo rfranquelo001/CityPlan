@@ -37,29 +37,29 @@
 	<ui:define name="NombrePagina">CityPlan: Registro</ui:define>
 	<ui:define name="Contenido">
 		<div class="colMain">
-			<form action="/action_page.php" class="formRegistro">
+			<h:form class="formRegistro">
 				<h2>
 					<b>Registro:</b>
 				</h2>
 				<label for="tipoUsuario"><b>Tipo de Usuario:</b></label><br /> 
 				<h:selectOneMenu
-					id="tipoUsuario" name="tipoUsuario">
+					id="tipoUsuario" name="tipoUsuario" value="#{usuarioBean.tipoUsuario}">
 					<f:selectItem itemValue="0"> </f:selectItem>
 					<f:selectItem itemValue="cliente">Cliente</f:selectItem>
 					<f:selectItem itemValue="comerciante">Comerciante</f:selectItem>
 				</h:selectOneMenu><br /> 
 				<label for="nombreUsuario"><b>Nombre:</b></label><br /> 
-				<h:inputText name="nombreUsuario" value=" "/><br /> 
+				<h:inputText name="nombreUsuario" value="#{usuarioBean.usuario}"/><br /> 
 				<label
 					for="apellidoUsuario"><b>Apellido:</b></label><br /> 
-					<h:inputText name="apellidoUsuario" value=" "/><br /> 
+					<h:inputText name="apellidoUsuario" value="#{usuarioBean.apellido}"/><br /> 
 					<label for="username"><b>Alias
 						de usuario:</b></label><br /> 
-						<h:inputText name="username" value=" "/><br /> <label
+						<h:inputText name="username" value="#{usuarioBean.username}"/><br /> <label
 					for="password"><b>Contraseña</b></label><br /> 
-					<h:inputText name="password" value=" "/> <br />
-				<h:commandButton class="btnRegistro" onclick="return compruebaDatos()" value=" ">Registrar</h:commandButton>
-			</form>
+					<h:inputText name="password" value="#{usuarioBean.password}"/> <br />
+				<h:commandButton class="btnRegistro" onclick="return compruebaDatos()" action=" ">Registrar</h:commandButton>
+			</h:form>
 
 		</div>
 

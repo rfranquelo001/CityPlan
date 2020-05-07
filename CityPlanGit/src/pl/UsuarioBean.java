@@ -1,5 +1,10 @@
 package pl;
 
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Named;
+
+@Named
+@RequestScoped
 public class UsuarioBean {
 	// Es un bean auxiliar para registrar nuevos clientes/comerciantes
 	private String tipoUsuario;

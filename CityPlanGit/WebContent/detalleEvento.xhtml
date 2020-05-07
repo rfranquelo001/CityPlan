@@ -1,50 +1,55 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
 
-	<ui:composition template="/WEB-INF/templates/layout.xhtml">
+<ui:composition template="/WEB-INF/templates/layout.xhtml">
 	<ui:define name="estilo">
 		<link rel="stylesheet" type="text/css" href="/estiloDetalleEvento.css" />
 	</ui:define>
 	<ui:define name="NombrePagina">CityPlan: Detalles del Evento</ui:define>
 	<ui:define name="Contenido">
-	<div class="colMain">
-	<h2>Evento</h2>
-	<p>Descripcion detallada del evento:</p>
+		<div class="colMain">
+			<h2>Evento</h2>
+			<p>Descripcion detallada del evento:</p>
 
-<h:dataTable class="mainTable" value="#{eventoBean.evento}" var="e">
-  <tr class="rowTable">
-  	<h:column> <h:graphicImage value="#{e.imagenEvento}"  height="80em" width="80em"/> </h:column>
-    <!-- Imagen es un string con la url de la imagen entonces no se si es h:graphicImage -->
-    <h:column class="textoDescr">
+			<h:dataTable class="mainTable" value="#{eventoBean.evento}" var="e">
+				<tr class="rowTable">
+					<h:column>
+						<h:graphicImage value="#{e.imagenEvento}" height="80em"
+							width="80em" />
+					</h:column>
+					<!-- Imagen es un string con la url de la imagen entonces no se si es h:graphicImage -->
+					<h:column class="textoDescr">
     #{e.descripcionEvento}
     </h:column>
-  </tr>
-  <tr>
-  	<td></td>
-  	<td>
-  		<h:dataTable class="secondTable">
-  			<tr class="rowTable">
-    		<h:column class="dataTable"><h:link value = "Page 1" outcome = "Localización del evento">Localización del evento</h:link></h:column>
-    		<h:column class="dataTable"><h:link value = "/opinion.xhtml" outcome = "Dar opinión/valoración" >Dar opinión/valoración</h:link></h:column>
-  			<h:column class="dataTable"><h:link value = "Page 1" outcome = "Leer Opiniones/Valoracion" /></h:column>
-  		</tr>
-  </h:dataTable>
-  <h:panelGroup rendered="#{opinionBean.hayOpinion}">
-				<p>
-					<h:outputText value="Opiniones/Valoracion " />
-					<br /> #{opinionBean.getListadoOpiniones()}
-				</p>
-			</h:panelGroup>
-  
-  	</td>
-  </tr>
-</h:dataTable>
+				</tr>
+				<tr>
+					<td></td>
+					<td><h:dataTable class="secondTable">
+							<tr class="rowTable">
+								<h:column class="dataTable">
+									<h:link value="Page 1" outcome="Localización del evento">Localización del evento</h:link>
+								</h:column>
+								<h:column class="dataTable">
+									<h:link value="/opinion.xhtml" outcome="Dar opinión/valoración">Dar opinión/valoración</h:link>
+								</h:column>
+								<h:column class="dataTable">
+									<h:link value="Page 1" outcome="Leer Opiniones/Valoracion" />
+								</h:column>
+							</tr>
+						</h:dataTable> <h:panelGroup rendered="#{opinionBean.hayOpinion}">
+							<p>
+								<h:outputText value="Opiniones/Valoracion " />
+								<br /> #{opinionBean.getListadoOpiniones()}
+							</p>
+						</h:panelGroup></td>
+				</tr>
+			</h:dataTable>
 
-</div>
-	
+		</div>
+
 	</ui:define>
-	</ui:composition>
+</ui:composition>
 </html>

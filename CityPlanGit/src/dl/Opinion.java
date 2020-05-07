@@ -12,13 +12,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
-/**
- * The persistent class for the Opinion database table.
- * 
- */
 @Entity
 @NamedQueries({ @NamedQuery(name = "Opinion.findAll", query = "SELECT o FROM Opinion o"),
-		@NamedQuery(name = "Opinion.Valoracion", query = "SELECT o.valoracion FROM Opinion o"), })
+		@NamedQuery(name = "Opinion.findValoracion", query = "SELECT o.valoracion FROM Opinion o"),
+		@NamedQuery(name = "Opinion.findOpinionEvento", query = "SELECT o FROM Opinion o WHERE o.evento.idEvento = :idEvento") })
+//O :evento.idEvento o :Evento_idEvento
 public class Opinion implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int idOpinion;

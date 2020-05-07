@@ -50,6 +50,18 @@ public class RegistroBean {
 		}
 	}
 
+	// propongo usar este otro metodo, usamos un bean auxiliar: UsuarioBean,
+	// generico y luego diferenciamos si es cliente o comerciante y guardamos
+	// DUDA hay que pasar cada parametro (nombreUsuario>nombreCliente,
+	// passwordUsuario>>passwordCliente...)??
+	public void addUsuario(UsuarioBean usuario) {
+		if ((usuario.getTipoUsuario()).equals("cliente")) { // true --> cliente
+			setRegistroCliente(usuario.getUsuario());
+		} else {
+			setRegistroComerciante(usuario.getUsuario());
+		}
+	}
+
 	public void setRegistroCliente(String nombre) {
 		if (ejb.obtenerClienteConNombre(nombre) != null) {
 			ejb.aniadirCliente(cliente);

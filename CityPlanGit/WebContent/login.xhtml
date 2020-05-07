@@ -1,14 +1,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
 
-	<ui:composition template="/WEB-INF/templates/layout.xhtml">
+<ui:composition template="/WEB-INF/templates/layout.xhtml">
 	<ui:define name="estilo">
 		<link rel="stylesheet" href="/estiloCityPlan.css" />
-		<link rel="stylesheet" href="/estiloLogin.css"/>
-		<link rel="stylesheet" href="/estiloRegistro.css"/>
+		<link rel="stylesheet" href="/estiloLogin.css" />
+		<link rel="stylesheet" href="/estiloRegistro.css" />
 	</ui:define>
 	<ui:define name="funcionesJS">
 		<script>
@@ -69,55 +69,94 @@ function validaRegistro() {
 	</ui:define>
 	<ui:define name="NombrePagina">CityPlan: LogIn</ui:define>
 	<ui:define name="Contenido">
-	<div class="colMain">
-	<h:commandButton class="openLogin" onclick="document.getElementById('formLogin').style.display='block'"
-					style="width: center;font-size:0.5em;"><b>Log In</b></h:commandButton>
-	<h:commandButton class="openRegistro" onclick="document.getElementById('formRegistro').style.display='block'"
-					style="width: center;font-size:0.5em;"><b>Registrarse</b></h:commandButton>
-	
-	<div class="formLogin" id="formLogin">
-		 <h:form action=" " class="formLoginContainer">
-		 <h2><b>Log In</b></h2>
-		 <label for="tipoUsuario"><b>Tipo de Usuario:</b></label><br/>
-		 <h:selectOneMenu id="tipoUsuario" name="tipoUsuario">
-		 	<f:selectItem itemValue="0">   </f:selectItem>
-		 	<f:selectItem itemValue="cliente">Cliente</f:selectItem>
-    		<f:selectItem itemValue="comerciante">Comerciante</f:selectItem>
-		 </h:selectOneMenu><br/>
-		 <label for="usuario"><b>Usuario</b></label><br/>
-    		<h:inputText  value=" " name="email"/><br/>
-    	<label for="psw"><b>Password</b></label><br/>
-   			<h:inputSecret  name="psw" id="psw" />
-    	<br/>
-    <h:commandButton value="submit" class="btnLogin" onclick="return validaLogIn()" action=" ">Login</h:commandButton>
-   	<h:commandButton value="button" class="btnCancel" onclick="closeForm()">Close</h:commandButton>
-		
-		 </h:form>
-	</div>
-	<div class="formRegistro" id="formRegistro" style="display:none;">
-	<h:form action=" " class="formRegistro">
-	<h2><b>Registro:</b></h2>
-	<h:outputText for="tipoUsuario"><b>Tipo de Usuario:</b></h:outputText><br/>
-		<h:selectOneMenu id="tipoUsuario" name="tipoUsuario">
-		 	<f:selectItem itemValue="0">   </f:selectItem>
-		 	<f:selectItem itemValue="cliente">Cliente</f:selectItem>
-    		<f:selectItem itemValue="comerciante">Comerciante</f:selectItem>
-		 </h:selectOneMenu><br/>
-	<h:outputText for="nombreUsuario"><b>Nombre:</b></h:outputText><br/>
-    		<h:inputText  name="nombreUsuario" id="nombreUsuario"/><br/>
-    <h:outputText for="apellidoUsuario"><b>Apellido:</b></h:outputText><br/>
-    		<h:inputText  name="apellidoUsuario" id="apellidoUsuario"/><br/>
-	<h:outputText for="username"><b>Alias de usuario:</b></h:outputText><br/>
-    		<h:inputText  name="username" id="username"/><br/>
-   	<h:outputText for="password"><b>Contraseña</b></h:outputText><br/>
-   			<h:inputSecret name="password" id="password"/>
-    	<br/>	
-    <h:commandButton value="submit" class="btnRegistro">Registrar</h:commandButton>
-    <h:commandButton value="button" class="btnCancel" onclick="closeForm()">Close</h:commandButton>
-	</h:form>
-	
-	</div>
-</div>
+		<div class="colMain">
+			<h:commandButton class="openLogin"
+				onclick="document.getElementById('formLogin').style.display='block'"
+				style="width: center;font-size:0.5em;">
+				<b>Log In</b>
+			</h:commandButton>
+			<h:commandButton class="openRegistro"
+				onclick="document.getElementById('formRegistro').style.display='block'"
+				style="width: center;font-size:0.5em;">
+				<b>Registrarse</b>
+			</h:commandButton>
+
+			<div class="formLogin" id="formLogin">
+				<h:form class="formLoginContainer">
+					<h2>
+						<b>Log In</b>
+					</h2>
+					<label for="tipoUsuario"><b>Tipo de Usuario:</b></label>
+					<br />
+					<h:selectOneMenu id="tipoUsuario" name="tipoUsuario" value="#{loginBean.tipoUsuario}">
+						<f:selectItem itemLabel="0">
+						</f:selectItem>
+						<f:selectItem itemValue="cliente" itemLabel="cliente">Cliente</f:selectItem>
+						<f:selectItem itemValue="comerciante" itemLabel="comerciante">Comerciante</f:selectItem>
+					</h:selectOneMenu>
+					<br />
+					<label for="usuario"><b>Usuario</b></label>
+					<br />
+					<h:inputText name="email" value="#{loginBean.usuario}" required="true"/>
+					<br />
+					<label for="psw" ><b>Password</b></label>
+					<br />
+					<h:inputSecret name="psw" id="psw" value="#{loginBean.password}" required="true"/>
+					<br />
+					<h:commandButton value="submit" class="btnLogin"
+						onclick="return validaLogIn()" action="#{loginBean.valida()}">Login</h:commandButton>
+					<h:commandButton value="button" class="btnCancel"
+						onclick="closeForm()">Close</h:commandButton>
+
+				</h:form>
+			</div>
+			<div class="formRegistro" id="formRegistro" style="display: none;">
+				<h:form class="formRegistro">
+					<h2>
+						<b>Registro:</b>
+					</h2>
+					<h:outputText for="tipoUsuario">
+						<b>Tipo de Usuario:</b>
+					</h:outputText>
+					<br />
+					<h:selectOneMenu id="tipoUsuario" name="tipoUsuario" value="#{usuarioBean.tipoUsuario}">
+						<f:selectItem itemValue="0">
+						</f:selectItem>
+						<f:selectItem itemValue="cliente">Cliente</f:selectItem>
+						<f:selectItem itemValue="comerciante">Comerciante</f:selectItem>
+					</h:selectOneMenu>
+					<br />
+					<h:outputText for="nombreUsuario">
+						<b>Nombre:</b>
+					</h:outputText>
+					<br />
+					<h:inputText name="nombreUsuario" id="nombreUsuario" value="#{usuarioBean.usuario}"/>
+					<br />
+					<h:outputText for="apellidoUsuario" >
+						<b>Apellido:</b>
+					</h:outputText>
+					<br />
+					<h:inputText name="apellidoUsuario" id="apellidoUsuario" value="#{usuarioBean.apellido}" />
+					<br />
+					<h:outputText for="username">
+						<b>Alias de usuario:</b>
+					</h:outputText>
+					<br />
+					<h:inputText name="username" id="username" value="#{usuarioBean.username}" />
+					<br />
+					<h:outputText for="password">
+						<b>Contraseña</b>
+					</h:outputText>
+					<br />
+					<h:inputSecret name="password" id="password" value="#{usuarioBean.password}" />
+					<br />
+					<h:commandButton value="submit" class="btnRegistro" action="#{registroBean.addUsuario(usuarioBean)} ">Registrar</h:commandButton>
+					<h:commandButton value="button" class="btnCancel"
+						onclick="closeForm()">Close</h:commandButton>
+				</h:form>
+
+			</div>
+		</div>
 	</ui:define>
-	</ui:composition>
+</ui:composition>
 </html>

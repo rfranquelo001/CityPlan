@@ -6,8 +6,8 @@ import javax.inject.Named;
 @Named
 @RequestScoped
 public class UsuarioBean {
-	// Es un bean auxiliar para recoger los datos del login y del registro y
-	// pasarselos a LoginBean o a RegistroBean.
+	// Es un bean auxiliar para recoger los datos del registro y
+	// pasarselos a RegistroBean.
 
 	private String tipoUsuario;
 	private String usuario;

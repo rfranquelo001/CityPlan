@@ -13,6 +13,8 @@ import bl.Login;
 @SessionScoped
 public class LoginBean implements Serializable {
 
+	// Recoge los datos del login de login.xhtml y
+	// comprueba si son válidos( consulta BBDD)
 	@EJB
 	private ClaseEJB ejb;
 	private Login login = new Login();
@@ -20,7 +22,7 @@ public class LoginBean implements Serializable {
 	private String usuario;
 	private String password;
 
-	boolean clienteCorrecto = false, comercianteCorrecto = false;
+	private boolean correcto = false;
 
 	public String getTipoUsuario() {
 		return tipoUsuario;
@@ -49,10 +51,19 @@ public class LoginBean implements Serializable {
 	// gestionar desde LogicaNegocio que los datos introducidos OK>>Login succesful
 	public void valida() {
 		if (tipoUsuario.equals("cliente")) {
-			clienteCorrecto = ejb.verificarCliente(usuario, password);
+			correcto = ejb.verificarCliente(usuario, password);
 		} else {
-			comercianteCorrecto = ejb.verificarComerciante(usuario, password);
+			correcto = ejb.verificarComerciante(usuario, password);
 		}
+
+	}
+
+	public boolean isCorrecto() {
+		return correcto;
+	}
+
+	public void setCorrecto(boolean correcto) {
+		this.correcto = correcto;
 	}
 
 }

@@ -110,8 +110,19 @@ function validaRegistro() {
 						onclick="return validaLogIn()" action="#{loginBean.valida()}">Login</h:commandButton>
 					<h:commandButton value="button" class="btnCancel"
 						onclick="closeForm()">Close</h:commandButton>
-
 				</h:form>
+				<h:panelGroup rendered="#{loginBean.correcto}==true">
+				<p>
+					<h:outputText value="Login correcto " />
+					<br/>
+				</p>
+				</h:panelGroup>
+				<h:panelGroup rendered="#{loginBean.correcto}==false">
+				<p>
+					<h:outputText value="Login erroneo " />
+					<br/>
+				</p>
+				</h:panelGroup>
 			</div>
 			<div class="formRegistro" id="formRegistro" style="display: none;">
 				<h:form class="formRegistro">

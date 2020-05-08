@@ -208,4 +208,5 @@ public class ClaseEJB implements Serializable {
 		// todas las opiniones sobre el mismo evento
 		return (List<Opinion>) em.createNamedQuery("Opinion.findOpinionEvento").getResultList();
 	}
+
 }

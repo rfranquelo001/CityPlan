@@ -1,7 +1,6 @@
 package pl;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -30,7 +29,14 @@ public class OpinionBean implements Serializable {
 	// detalleEvento.xhtml
 	private int idOpinion;
 	private float p1, p2, p3, p4, p5, p6, p7, p8;
+	private String textoOpinion;
+	private float valoracion;
+	private Cliente cliente;
+	private Evento evento;
 
+	private boolean hayOpinion;
+
+	// datos recogidos del formulario en opinion.xhtml:
 	public float getP1() {
 		return p1;
 	}
@@ -95,12 +101,16 @@ public class OpinionBean implements Serializable {
 		this.p8 = p8;
 	}
 
-	private String textoOpinion;
-	private BigDecimal valoracion;
-	private Cliente cliente;
-	private Evento evento;
+	public String getTextoOpinion() {
+		return textoOpinion;
+	}
 
-	private boolean hayOpinion;
+	public void setTextoOpinion() {
+
+		opinion.setTextoOpinion(textoOpinion);
+		ejb.aniadirOpinion(opinion);
+	}
+	//////////////////////////////////////////////////////
 
 	public Opinion getOpinion() {
 		return opinion;
@@ -119,21 +129,17 @@ public class OpinionBean implements Serializable {
 		this.idOpinion = idOpinion;
 	}
 
-	public String getTextoOpinion() {
-		return textoOpinion;
-	}
-
-	public void setTextoOpinion(String textoOpinion) {
-		this.textoOpinion = textoOpinion;
-	}
-
-	public BigDecimal getValoracion() {
+	public float getValoracion() {
 		return valoracion;
 	}
 
+	// pasar datos a la Logica de negocio para que calcule la valoracion del evento
 	public void setValoracion() {
-		// Cambiamos el tipo de dato?
-		valoracion = (BigDecimal) ((p1 + p2 + p3 + p4 + p5 + p6 + p7 + p8) / 8);
+
+		valoracion = (p1 + p2 + p3 + p4 + p5 + p6 + p7 + p8) / 8;
+		opinion.setValoracion(valoracion);
+		ejb.aniadirOpinion(opinion);
+
 	}
 
 	public Cliente getCliente() {

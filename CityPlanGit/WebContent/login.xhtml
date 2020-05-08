@@ -41,9 +41,8 @@ function validaLogIn() {
 function validaRegistro() {
 	var tipo= document.getElementById("tipoUsuario");
 	var nombre= document.getElementById("nombreUsuario");
-	var apellido= document.getElementById("apellidoUsuario");
-	var userName= document.getElementById("username");
 	var pass= document.getElementById("password");
+	var correo= document.getElementById("correo");
 	var r=true;
 
 	if(tipo==""){
@@ -52,11 +51,8 @@ function validaRegistro() {
 	}else if(nombre==""){
 		document.getElementById("nombre").style.backgroundColor("yellow");
 		r=false;	
-	}else if(apellido==""){
-		document.getElementById("apellido").style.backgroundColor("yellow");
-		r=false;
-	}else if(userName==""){
-		document.getElementById("userName").style.backgroundColor("yellow");
+	}else if(correo==""){
+		document.getElementById("correo").style.backgroundColor("yellow");
 		r=false;
 	}else if(pass==""){
 		document.getElementById("pass").style.backgroundColor("yellow");
@@ -98,7 +94,7 @@ function validaRegistro() {
 					<br />
 					<label for="usuario"><b>Usuario</b></label>
 					<br />
-					<h:inputText name="email" value="#{loginBean.usuario}"
+					<h:inputText name="usuario" value="#{loginBean.usuario}"
 						required="true" />
 					<br />
 					<label for="psw"><b>Password</b></label>
@@ -108,8 +104,7 @@ function validaRegistro() {
 					<br />
 					<h:commandButton value="submit" class="btnLogin"
 						onclick="return validaLogIn()" action="#{loginBean.valida()}">Login</h:commandButton>
-					<h:commandButton value="button" class="btnCancel"
-						onclick="closeForm()">Close</h:commandButton>
+					<h:commandButton value="button" class="btnCancel" onclick="closeForm()">Close</h:commandButton>
 				</h:form>
 				<h:panelGroup rendered="#{loginBean.correcto}==true">
 				<p>
@@ -135,8 +130,7 @@ function validaRegistro() {
 					<br />
 					<h:selectOneMenu id="tipoUsuario" name="tipoUsuario"
 						value="#{usuarioBean.tipoUsuario}">
-						<f:selectItem itemValue="0">
-						</f:selectItem>
+						<f:selectItem itemValue="0"> </f:selectItem>
 						<f:selectItem itemValue="cliente">Cliente</f:selectItem>
 						<f:selectItem itemValue="comerciante">Comerciante</f:selectItem>
 					</h:selectOneMenu>
@@ -146,34 +140,38 @@ function validaRegistro() {
 					</h:outputText>
 					<br />
 					<h:inputText name="nombreUsuario" id="nombreUsuario"
-						value="#{usuarioBean.usuario}" />
+						value="#{registroBean.nombreUsuario}" />
 					<br />
-					<h:outputText for="apellidoUsuario">
-						<b>Apellido:</b>
+					<h:outputText for="correoUsuario">
+						<b>Correo:</b>
 					</h:outputText>
 					<br />
 					<h:inputText name="correoUsuario" id="correoUsuario"
-						value="#{usuarioBean.correo}" />
-					<br />
-					<h:outputText for="username">
-						<b>Alias de usuario:</b>
-					</h:outputText>
-					<br />
-					<h:inputText name="username" id="username"
-						value="#{usuarioBean.username}" />
+						value="#{registroBean.correo}" />
 					<br />
 					<h:outputText for="password">
 						<b>Contraseña</b>
 					</h:outputText>
 					<br />
 					<h:inputSecret name="password" id="password"
-						value="#{usuarioBean.password}" />
+						value="#{registroBean.password}" />
 					<br />
 					<h:commandButton value="submit" class="btnRegistro"
-						action="#{registroBean.addUsuario(usuarioBean)} ">Registrar</h:commandButton>
-					<h:commandButton value="button" class="btnCancel"
-						onclick="closeForm()">Close</h:commandButton>
+						action="#{registroBean.addUsuario()} ">Registrar</h:commandButton>
+					<h:commandButton value="button" class="btnCancel" onclick="closeForm()">Close</h:commandButton>
 				</h:form>
+				<h:panelGroup rendered="#{registroBean.registrado}==true">
+				<p>
+					<h:outputText value="Registrado correctamente " />
+					<br/>
+				</p>
+				</h:panelGroup>
+				<h:panelGroup rendered="#{registroBean.registrado}==false">
+				<p>
+					<h:outputText value="Registro erroneo " />
+					<br/>
+				</p>
+				</h:panelGroup>
 
 			</div>
 		</div>

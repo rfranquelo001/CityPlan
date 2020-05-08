@@ -17,14 +17,51 @@ public class RegistroBean {
 	// Recoge los datos de login.xhtml a partir de usuarioBean comprueba el
 	// tipoUsuario y guarda en la BBDD un nuevo cliente o nuevo comerciante
 
+	private String tipoUsuario;
+	private String nombreUsuario;
+	private String correo;
+	private String password;
+
 	@EJB
 	private ClaseEJB ejb;
 	private List<Cliente> clientes;
 	private List<Comerciante> comerciantes;
 	private Cliente cliente;
 	private Comerciante comerciante;
-	private boolean registradoCliente;
-	private boolean registradoComerciante;
+	private boolean registrado;
+
+	// Parametros del formulario de registro:
+	public String getTipoUsuario() {
+		return tipoUsuario;
+	}
+
+	public void setTipoUsuario(String tipoUsuario) {
+		this.tipoUsuario = tipoUsuario;
+	}
+
+	public String getNombreUsuario() {
+		return nombreUsuario;
+	}
+
+	public void setNombreUsuario(String nombreUsuario) {
+		this.nombreUsuario = nombreUsuario;
+	}
+
+	public String getCorreo() {
+		return correo;
+	}
+
+	public void setCorreo(String correo) {
+		this.correo = correo;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
 	// Para poder obtener los clientes para hacer el registro
 	public List<Cliente> getClientes() {
@@ -42,31 +79,51 @@ public class RegistroBean {
 		return comerciantes;
 	}
 
-	// propongo usar este otro metodo, usamos un bean auxiliar: UsuarioBean,
-	// generico y luego diferenciamos si es cliente o comerciante y guardamos
-	// DUDA hay que pasar cada parametro (nombreUsuario>nombreCliente,
-	// passwordUsuario>>passwordCliente...)??
-	public void addUsuario(UsuarioBean usuario) {
-		if ((usuario.getTipoUsuario()).equals("cliente")) {
+	// Para añadir usuario, miramos el tipoUsuario y registramos como cliente o como
+	// comerciante
+	public void addUsuario() {
+		if (tipoUsuario.equals("cliente")) {
 
-			setRegistroCliente(usuario.getUsuario());
+			setRegistroCliente(nombreUsuario, correo, password);
 		} else {
-			setRegistroComerciante(usuario.getUsuario());
+			setRegistroComerciante(nombreUsuario, correo, password);
 		}
 	}
 
-	public void setRegistroCliente(String nombre) {
+	// Registrar cliente: comprobamos que el nombre del cliente no está en la BBDD,
+	// completamos el objeto cliente con los datos recogidos y ejb añade el nuevo
+	// cliente a la BBDD
+	public void setRegistroCliente(String nombre, String correo, String contraseña) {
+
 		if (ejb.obtenerClienteConNombre(nombre) != null) {
+
+			cliente.setCorreoCliente(correo);
+			cliente.setNombreCliente(nombre);
+			cliente.setPasswordCliente(contraseña);
+
 			ejb.aniadirCliente(cliente);
-			registradoCliente = true;
+			registrado = true;
 		}
 	}
 
-	public void setRegistroComerciante(String nombre) {
+	public void setRegistroComerciante(String nombre, String correo, String contraseña) {
 		if (ejb.obtenerComercianteConNombre(nombre) != null) {
+
+			comerciante.setCorreoComerciante(correo);
+			comerciante.setNombreComerciante(nombre);
+			comerciante.setPasswordComerciante(contraseña);
+
 			ejb.aniadirComerciante(comerciante);
-			registradoComerciante = true;
+			registrado = true;
 		}
+	}
+
+	public boolean isRegistrado() {
+		return registrado;
+	}
+
+	public void setRegistrado(boolean registrado) {
+		this.registrado = registrado;
 	}
 
 }

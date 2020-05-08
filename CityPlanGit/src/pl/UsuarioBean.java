@@ -6,18 +6,20 @@ import javax.inject.Named;
 @Named
 @RequestScoped
 public class UsuarioBean {
-	// Es un bean auxiliar para registrar nuevos clientes/comerciantes
+	// Es un bean auxiliar para recoger los datos del login y del registro y
+	// pasarselos a LoginBean o a RegistroBean.
+
 	private String tipoUsuario;
 	private String usuario;
-	private String apellido;
+	private String correo;
 	private String username;
 
-	public String getApellido() {
-		return apellido;
+	public String getCorreo() {
+		return correo;
 	}
 
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
+	public void setCorreo(String correo) {
+		this.correo = correo;
 	}
 
 	public String getUsername() {

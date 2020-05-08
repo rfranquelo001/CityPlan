@@ -88,7 +88,8 @@ function validaRegistro() {
 					</h2>
 					<label for="tipoUsuario"><b>Tipo de Usuario:</b></label>
 					<br />
-					<h:selectOneMenu id="tipoUsuario" name="tipoUsuario" value="#{loginBean.tipoUsuario}">
+					<h:selectOneMenu id="tipoUsuario" name="tipoUsuario"
+						value="#{loginBean.tipoUsuario}">
 						<f:selectItem itemLabel="0">
 						</f:selectItem>
 						<f:selectItem itemValue="cliente" itemLabel="cliente">Cliente</f:selectItem>
@@ -97,11 +98,13 @@ function validaRegistro() {
 					<br />
 					<label for="usuario"><b>Usuario</b></label>
 					<br />
-					<h:inputText name="email" value="#{loginBean.usuario}" required="true"/>
+					<h:inputText name="email" value="#{loginBean.usuario}"
+						required="true" />
 					<br />
-					<label for="psw" ><b>Password</b></label>
+					<label for="psw"><b>Password</b></label>
 					<br />
-					<h:inputSecret name="psw" id="psw" value="#{loginBean.password}" required="true"/>
+					<h:inputSecret name="psw" id="psw" value="#{loginBean.password}"
+						required="true" />
 					<br />
 					<h:commandButton value="submit" class="btnLogin"
 						onclick="return validaLogIn()" action="#{loginBean.valida()}">Login</h:commandButton>
@@ -119,7 +122,8 @@ function validaRegistro() {
 						<b>Tipo de Usuario:</b>
 					</h:outputText>
 					<br />
-					<h:selectOneMenu id="tipoUsuario" name="tipoUsuario" value="#{usuarioBean.tipoUsuario}">
+					<h:selectOneMenu id="tipoUsuario" name="tipoUsuario"
+						value="#{usuarioBean.tipoUsuario}">
 						<f:selectItem itemValue="0">
 						</f:selectItem>
 						<f:selectItem itemValue="cliente">Cliente</f:selectItem>
@@ -130,27 +134,32 @@ function validaRegistro() {
 						<b>Nombre:</b>
 					</h:outputText>
 					<br />
-					<h:inputText name="nombreUsuario" id="nombreUsuario" value="#{usuarioBean.usuario}"/>
+					<h:inputText name="nombreUsuario" id="nombreUsuario"
+						value="#{usuarioBean.usuario}" />
 					<br />
-					<h:outputText for="apellidoUsuario" >
+					<h:outputText for="apellidoUsuario">
 						<b>Apellido:</b>
 					</h:outputText>
 					<br />
-					<h:inputText name="apellidoUsuario" id="apellidoUsuario" value="#{usuarioBean.apellido}" />
+					<h:inputText name="correoUsuario" id="correoUsuario"
+						value="#{usuarioBean.correo}" />
 					<br />
 					<h:outputText for="username">
 						<b>Alias de usuario:</b>
 					</h:outputText>
 					<br />
-					<h:inputText name="username" id="username" value="#{usuarioBean.username}" />
+					<h:inputText name="username" id="username"
+						value="#{usuarioBean.username}" />
 					<br />
 					<h:outputText for="password">
 						<b>Contraseña</b>
 					</h:outputText>
 					<br />
-					<h:inputSecret name="password" id="password" value="#{usuarioBean.password}" />
+					<h:inputSecret name="password" id="password"
+						value="#{usuarioBean.password}" />
 					<br />
-					<h:commandButton value="submit" class="btnRegistro" action="#{registroBean.addUsuario(usuarioBean)} ">Registrar</h:commandButton>
+					<h:commandButton value="submit" class="btnRegistro"
+						action="#{registroBean.addUsuario(usuarioBean)} ">Registrar</h:commandButton>
 					<h:commandButton value="button" class="btnCancel"
 						onclick="closeForm()">Close</h:commandButton>
 				</h:form>

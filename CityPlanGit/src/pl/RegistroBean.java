@@ -13,6 +13,10 @@ import dl.Comerciante;
 @Named // Acceso al bean utilizando su nombre: registroBean
 @RequestScoped // Se crea una vez para cada petición HTTP
 public class RegistroBean {
+
+	// Recoge los datos de login.xhtml a partir de usuarioBean comprueba el
+	// tipoUsuario y guarda en la BBDD un nuevo cliente o nuevo comerciante
+
 	@EJB
 	private ClaseEJB ejb;
 	private List<Cliente> clientes;
@@ -38,24 +42,13 @@ public class RegistroBean {
 		return comerciantes;
 	}
 
-	// Tomar la decisión de registrar uno u otro parece más sencilla desde el xhtml,
-	// seleccionando un action u otro
-	// Sino, se puede hacer que el elegir uno u otro nos de el valor y la función
-	// quedaría así
-	public void realizarRegistro(boolean tipoUsuario) {
-		if (tipoUsuario) { // true --> cliente
-			setRegistroCliente(cliente.getNombreCliente());
-		} else {
-			setRegistroComerciante(comerciante.getNombreComerciante());
-		}
-	}
-
 	// propongo usar este otro metodo, usamos un bean auxiliar: UsuarioBean,
 	// generico y luego diferenciamos si es cliente o comerciante y guardamos
 	// DUDA hay que pasar cada parametro (nombreUsuario>nombreCliente,
 	// passwordUsuario>>passwordCliente...)??
 	public void addUsuario(UsuarioBean usuario) {
-		if ((usuario.getTipoUsuario()).equals("cliente")) { // true --> cliente
+		if ((usuario.getTipoUsuario()).equals("cliente")) {
+
 			setRegistroCliente(usuario.getUsuario());
 		} else {
 			setRegistroComerciante(usuario.getUsuario());

@@ -17,7 +17,8 @@ public class LoginBean implements Serializable {
 	// comprueba si son válidos( consulta BBDD)
 	@EJB
 	private ClaseEJB ejb;
-	private Login login = new Login();
+	private Login login = new Login();// >>PENDIENTE DE ELIMINAR??
+
 	private String tipoUsuario;
 	private String usuario;
 	private String password;
@@ -48,7 +49,7 @@ public class LoginBean implements Serializable {
 		this.password = password;
 	}
 
-	// gestionar desde LogicaNegocio que los datos introducidos OK>>Login succesful
+	// Verificar que los datos introducidos OK>>Login succesful
 	public void valida() {
 		if (tipoUsuario.equals("cliente")) {
 			correcto = ejb.verificarCliente(usuario, password);

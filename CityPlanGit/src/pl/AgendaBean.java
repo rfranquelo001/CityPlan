@@ -19,18 +19,19 @@ import dl.Filtro;
 			// dado de alta y logeado
 public class AgendaBean implements Serializable {
 	private static final long serialVersionUID = 1L;
+	private List<Evento> listaEventos;
 
 	@EJB
 	private ClaseEJB ejb;
 	// private List<Evento> listaEventos;
 
 	public List<Evento> getListaEventos() {
-		List<Evento> listaEventos = ejb.getEventos();
+		if (listaEventos == null)
+			listaEventos = ejb.getEventos();
 		String holi = listaEventos.get(0).getNombreEvento();
 		String holi2 = listaEventos.get(1).getNombreEvento();
 		System.out.println(holi);
 		System.out.println(holi2);
-		System.out.println("holi\n holi\n holi\n holi\n holi\n holi\n holi\n");
 		return listaEventos;
 	}
 

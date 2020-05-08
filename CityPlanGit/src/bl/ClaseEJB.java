@@ -8,7 +8,6 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.ws.rs.Path;
 
 import dl.Asociacion;
 import dl.Cliente;
@@ -17,20 +16,19 @@ import dl.Evento;
 import dl.Filtro;
 import dl.Opinion;
 
-@Path("/negocio")
+//@Path("/negocio")
 @Stateless
 @LocalBean
 public class ClaseEJB implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private boolean errorCliente = false;
 	@PersistenceContext
-	EntityManager em;
+	private EntityManager em;
 
 	// EVENTOS
 	// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	@SuppressWarnings("unchecked")
 	public List<Evento> getEventos() {
-		return (List<Evento>) em.createNamedQuery("Evento.findAll").getResultList();
+		return em.createNamedQuery("Evento.findAll", Evento.class).getResultList();
 	}
 
 	// Evento tiene un comerciante, uno o muchos filtros, una o muchas opiniones

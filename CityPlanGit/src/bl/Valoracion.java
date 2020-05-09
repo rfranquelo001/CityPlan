@@ -44,17 +44,4 @@ public class Valoracion {
 	public void setRespuestasValoracion(String respuestasValoracion) {
 		this.respuestasValoracion = respuestasValoracion;
 	}
-
-	// Calcular nuevo valor de la valoración:
-	// NO ESTÁ DEL TODO BIEN, FALTA METER UN PARÁMETRO CON LA VALORACIÓN ANTERIOR Y
-	// EL NÚMERO DE VALORACIONES EXISTENTES
-	public float calculaValoracion(int p1, int p2, int p3, int p4, int p5, int p6, int p7, int p8, String nombreEvento) {
-		float totalValoracionActual = (p1 + p2 + p3 + p4 + p5 + p6 + p7 + p8) / 8;
-		//totalValoracionBD es el valor almacenado en la tabla Evento en la BD, accedo a él a traves de 
-		float totalValoracionBD=
-			
-					
-			return totalValoracion;
-		}
-
 }

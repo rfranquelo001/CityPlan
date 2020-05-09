@@ -1,6 +1,7 @@
 package pl;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -30,7 +31,7 @@ public class OpinionBean implements Serializable {
 	private int idOpinion;
 	private float p1, p2, p3, p4, p5, p6, p7, p8;
 	private String textoOpinion;
-	private float valoracion;
+	private BigDecimal valoracion;
 	private Cliente cliente;
 	private Evento evento;
 
@@ -129,14 +130,15 @@ public class OpinionBean implements Serializable {
 		this.idOpinion = idOpinion;
 	}
 
-	public float getValoracion() {
+	public BigDecimal getValoracion() {
 		return valoracion;
 	}
 
 	// pasar datos a la Logica de negocio para que calcule la valoracion del evento
 	public void setValoracion() {
 
-		valoracion = (p1 + p2 + p3 + p4 + p5 + p6 + p7 + p8) / 8;
+		float v = (p1 + p2 + p3 + p4 + p5 + p6 + p7 + p8) / 8;
+		valoracion = BigDecimal.valueOf(v);
 		opinion.setValoracion(valoracion);
 		ejb.aniadirOpinion(opinion);
 

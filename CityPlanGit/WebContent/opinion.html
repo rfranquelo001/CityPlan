@@ -15,8 +15,10 @@ function msg(){
 function msgOpinion(){
 	if(document.getElementById("message").value==""){ 
 		alert("Por favor escribe una breve opinión");
+		return "opinion.html";
 	}else{
 		alert("¡Gracias por tu opinión!");
+		return "homeMenu.html"; 
 	}
 }
 
@@ -44,7 +46,7 @@ function msgOpinion(){
 </p>
 
 	<!-- Inicio formulario -->
-		<form id="formulario" method="post" action="/ServletCliente" class="formulario">
+		<form id="formulario" method="post" action="agenda.html" class="formulario">
 			<section class="formValoracion" id="section1">
 				<p>Nombre evento:</p>
 				<input type="text" id="nombreEvento">
@@ -106,15 +108,16 @@ function msgOpinion(){
 				<br/>
 		<!-- Botón enviar -->
 			<input type="submit" class="btnEnviar" value="Enviar" onclick="msg()">
-											
+			</form>
+			<form id="formulario" class="formulario">								
 			<br/>
-		<section class="formOpinion">
+		<section class="formOpinion" >
 		<h3>Opinión sobre el evento</h3>
 		<p id="enunciado">En este espacio podrás escribir una breve opinión sobre el evento al que has asistido:</p>
 		<br/>
 		<textarea id="message" name="message" class="textoOpinion" id="textoOpinion" rows="10" cols="55" placeholder=" Breve opinión"></textarea><br/> 
 		<br/>
-		<input type="submit" class="btnEnviar" value="Enviar" onclick="msgOpinion()">
+		<input type="submit" class="btnEnviar" value="Enviar" onclick="return msgOpinion()">
 		<br/>
 		</section>
 		</form>

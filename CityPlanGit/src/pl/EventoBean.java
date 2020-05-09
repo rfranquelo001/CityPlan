@@ -19,6 +19,9 @@ import dl.Opinion;
 @RequestScoped
 public class EventoBean implements Serializable {
 
+	// recoge los datos introducidos en formularioEvento.xhtml y guarda el nuevo
+	// evento en la BBDD
+
 	/**
 	 * 
 	 */

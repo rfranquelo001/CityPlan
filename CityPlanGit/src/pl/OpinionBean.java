@@ -16,6 +16,8 @@ import dl.Opinion;
 @Named
 @RequestScoped
 public class OpinionBean implements Serializable {
+	// recoge los datos de los formularios de opinion.xhtml y guarda una nueva
+	// opinion en la BBDD
 
 	/**
 	 * 

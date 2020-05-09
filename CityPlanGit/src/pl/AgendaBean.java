@@ -18,6 +18,10 @@ import dl.Filtro;
 @ViewScoped // Igual tenemos que poner session para que mantenga los filtros del usuario
 			// dado de alta y logeado
 public class AgendaBean implements Serializable {
+
+	// Se encarga de mostrar la tabla de los eventos guardados en la BBDD en
+	// agenda.xhtml
+
 	private static final long serialVersionUID = 1L;
 	private List<Evento> listaEventos;
 

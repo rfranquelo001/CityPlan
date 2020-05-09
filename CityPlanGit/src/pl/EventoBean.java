@@ -144,7 +144,7 @@ public class EventoBean implements Serializable {
 		// poner idComerciante en aniadirEvento
 		// acordarse de ir a formularioEvento.xhtml y en h:commandButton corregir
 		// parametros introducidos en metodo addEvento
-		ejb.aniadirEvento(ev, idComerciante);
+		ejb.aniadirEvento(ev, comerciante.getIdComerciante());
 	}
 
 }

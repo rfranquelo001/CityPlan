@@ -1,0 +1,30 @@
+@charset "UTF-8";
+/*Estilo de la pagina mapa.html*/
+/*LAYOUT*/
+    .layout{
+        display: grid;
+        grid-template-columns: auto auto auto;
+        grid-gap: 0,625em; /*10px--0,625em*/
+        padding: 0,625em;
+
+        background-color: white;
+        opacity: 0.5;
+        filter: alpha(opacity=50);
+
+        outline-style: solid;
+        outline-color: #8961AF;
+        outline-width: thin;
+    } 
+    .gridMap{
+        grid-column-start: 1;
+        grid-column-end: 3;
+    }   
+    .colMain h2{
+    font-size: 2rem;
+    padding-bottom: 1em;
+    text-align: center;
+    color: white;
+    } 
+    .leftColumn{
+    justify-self: start;
+    }

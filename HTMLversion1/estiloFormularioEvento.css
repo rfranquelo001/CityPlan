@@ -1,0 +1,24 @@
+@charset "UTF-8";
+/*CITYPLAN DYNAMIC*/
+*{
+	margin:0;
+	padding:0;
+}
+.container	.colMain{
+        
+        background-color: #b691dd;
+        opacity: 0.8;
+      	float:left;
+      	font-size: 1rem;
+      	padding: 1em;
+    }
+  .container .colMain h2{
+  	font-size: 1.5rem;
+  	color: #5235af;
+  }  
+  .container .colMain .formEvento .btnEnviar{
+  	padding: 1em;
+  }
+.container .leftColumn{
+	align-self: start;
+}

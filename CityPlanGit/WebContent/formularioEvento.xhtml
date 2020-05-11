@@ -6,11 +6,11 @@
 
 <ui:composition template="/WEB-INF/templates/layout.xhtml">
 	<ui:define name="estilo">
-		<link rel="stylesheet" type="text/css" href="/estiloCityPlan.css" />
-		<link rel="stylesheet" href="/estiloFormularioEvento.css" />
+		<link rel="stylesheet" type="text/css" href="estiloCityPlan.css" />
+		<link rel="stylesheet" href="estiloFormularioEvento.css" />
 	</ui:define>
 	<ui:define name="funcionesJS">
-		<script>
+	<script>
 		function validaForm() {
 			
 			var titulo=document.getElementById("tituloEvento").value;
@@ -92,20 +92,22 @@
 				requiredMessage="Introduzca una descripción para el evento"></h:inputTextarea>
 				<br />
 
+<!-- HE INTENTADO HACERLO PERO NO HE CONSEGUIDO, ME SALTA ERROR AL CONVERTIR LA FECHA Y HORA A DATE Y TIME -->
+
 				<label for="fechaEvento">Fecha del evento:</label>
 				<br />
-				<h:inputTextarea id="fechaEvento" name="fechaEvento" 
-				value="#{eventoBean.evento.fechaEvento}"
-				required="true"   
-				requiredMessage="Indique la fecha del evento" />
+				<h:inputText id = "fechaEvento" value = "#{eventoBean.evento.fechaEvento}" required="true"   
+				requiredMessage="Indique la fecha del evento">
+           			<f:convertDateTime pattern = "dd-mm-yyyy" />
+         		</h:inputText>
 				<br />
 
 				<label for="horaEvento">Hora del evento:</label>
 				<br />
-				<h:inputText id="horaEvento" name="horaEvento" 
-				value="#{eventoBean.evento.horaEvento}"
-				required="true"   
-				requiredMessage="Indique la hora del evento"/>
+				<h:inputText id = "horaEvento" value = "#{eventoBean.evento.horaEvento}" required="true"   
+				requiredMessage="Indique la hora del evento">
+           			<f:convertDateTime pattern = "HH:mm:ss" />
+         		</h:inputText>
 				<br />
 
 				<label for="localizacionEvento">Localización del evento:</label>
@@ -119,11 +121,11 @@
 				<label for="filtrosEvento">Filtros asociados al evento:</label>
 				<br />
 				<h:inputText id="filtrosEvento" name="filtrosEvento" 
-				value="#{eventoBean.evento.filtros}"/>
+			     target="#{eventoBean}" property="eventoBean.nombreFiltro"/>
 				<br />
 
 				<h:commandButton value="Enviar" id="btnEnviar" class="btnEnviar"
-					onclick="return validaForm()" action="#{eventoBean.addEventoBD(eventoBean.evento)}"/>
+					onclick="return validaForm()" action="#{eventoBean.addEvento(eventoBean.evento, eventoBean.comerciante)}"/>
 			</h:form>
 
 		</div>

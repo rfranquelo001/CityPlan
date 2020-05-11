@@ -1,147 +1,79 @@
 package pl;
 
 import java.io.Serializable;
-import java.sql.Time;
-import java.util.Date;
-import java.util.List;
+import java.util.Random;
 
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
 import bl.ClaseEJB;
+import bl.CrunchifyQRCode;
+import dl.Cliente;
 import dl.Comerciante;
 import dl.Evento;
-import dl.Filtro;
-import dl.Opinion;
 
 @Named
-@RequestScoped
+@SessionScoped
 public class EventoBean implements Serializable {
-
-	// recoge los datos introducidos en formularioEvento.xhtml y guarda el nuevo
-	// evento en la BBDD
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
+	private Evento evento = new Evento();
+	private Cliente cliente = new Cliente();
+	private Comerciante comerciante = new Comerciante();
+	private String nombreFiltro;
+	private String enlace = null;
 
 	@EJB
 	private ClaseEJB ejb;
-	private Evento evento = new Evento();
-	private String codigoQR;
-	private String descripcionEvento;
-	private Date fechaEvento;
-	private Time horaEvento;
-	private String imagenEvento;
-	private String localizacionEvento;
-	private String nombreEvento;
-	private String resumenEvento;
-	private Comerciante comerciante;
-	private List<Filtro> filtros;
-	private List<Opinion> opinions;
 
 	public Evento getEvento() {
 		return evento;
-	}
-
-	public void setEvento(Evento evento) {
-		this.evento = evento;
-	}
-
-	public String getCodigoQR() {
-		return codigoQR;
-	}
-
-	public void setCodigoQR(String codigoQR) {
-		this.codigoQR = codigoQR;
-	}
-
-	public String getDescripcionEvento() {
-		return descripcionEvento;
-	}
-
-	public void setDescripcionEvento(String descripcionEvento) {
-		this.descripcionEvento = descripcionEvento;
-	}
-
-	public Date getFechaEvento() {
-		return fechaEvento;
-	}
-
-	public void setFechaEvento(Date fechaEvento) {
-		this.fechaEvento = fechaEvento;
-	}
-
-	public Time getHoraEvento() {
-		return horaEvento;
-	}
-
-	public void setHoraEvento(Time horaEvento) {
-		this.horaEvento = horaEvento;
-	}
-
-	public String getImagenEvento() {
-		return imagenEvento;
-	}
-
-	public void setImagenEvento(String imagenEvento) {
-		this.imagenEvento = imagenEvento;
-	}
-
-	public String getLocalizacionEvento() {
-		return localizacionEvento;
-	}
-
-	public void setLocalizacionEvento(String localizacionEvento) {
-		this.localizacionEvento = localizacionEvento;
-	}
-
-	public String getNombreEvento() {
-		return nombreEvento;
-	}
-
-	public void setNombreEvento(String nombreEvento) {
-		this.nombreEvento = nombreEvento;
-	}
-
-	public String getResumenEvento() {
-		return resumenEvento;
-	}
-
-	public void setResumenEvento(String resumenEvento) {
-		this.resumenEvento = resumenEvento;
 	}
 
 	public Comerciante getComerciante() {
 		return comerciante;
 	}
 
-	public void setComerciante(Comerciante comerciante) {
-		this.comerciante = comerciante;
+	public void setEvento(Evento evento) {
+		this.evento = evento;
 	}
 
-	public List<Filtro> getFiltros() {
-		return filtros;
+	public String getNombreFiltro() {
+		return nombreFiltro;
 	}
 
-	public void setFiltros(List<Filtro> filtros) {
-		this.filtros = filtros;
+	public void setNombreFiltro(String nombreFiltro) {
+		this.nombreFiltro = nombreFiltro;
+
 	}
 
-	public List<Opinion> getOpinions() {
-		return opinions;
+	public void addEvento(Evento evento, Comerciante comerciante) {
+		setEvento(obtenerEnlaceOpinion(evento));
+		ejb.aniadirEvento(evento, comerciante.getIdComerciante(), ejb.getFiltroPorNombre(nombreFiltro).getIdFiltro());
 	}
 
-	public void setOpinions(List<Opinion> opinions) {
-		this.opinions = opinions;
+	public Evento obtenerEventoNombre(Evento evento) {
+		String nombreEvento = evento.getNombreEvento();
+		nombreEvento.replace("+", " ");
+		evento = ejb.obtenerEventoPorNombreEJB(nombreEvento);
+		return evento;
 	}
 
-	// añadir Evento recogido en el formulario a la BD:
-	public void addEventoBD(Evento ev) {
+	public void deleteEvento(int idEvento) {
+		ejb.eliminarEvento(idEvento);
+	}
 
-		ejb.aniadirEvento(ev, comerciante.getIdComerciante());
+	public Evento obtenerEnlaceOpinion(Evento evento) {
+		Random r = new Random();
+		if (!cliente.equals(null)) {
+			int numEnlace = r.nextInt(2000);
+			enlace = Integer.toString(numEnlace);
+			String[] params = new String[2];
+			params[0] = evento.getNombreEvento() + enlace;
+			CrunchifyQRCode.main(params);
+			evento.setCodigoQR(params[0]);
+		}
+		return evento;
 	}
 
 }

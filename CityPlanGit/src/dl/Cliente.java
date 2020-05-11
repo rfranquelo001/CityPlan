@@ -1,30 +1,34 @@
 package dl;
 
 import java.io.Serializable;
-import javax.persistence.*;
-import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 /**
  * The persistent class for the Cliente database table.
  * 
  */
 @Entity
-@NamedQuery(name="Cliente.findAll", query="SELECT c FROM Cliente c")
+@NamedQueries({ @NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM Cliente c"),
+		@NamedQuery(name = "Cliente.findClientePorNombre", query = "SELECT c FROM Cliente c WHERE c.nombreCliente=:nombreCliente") })
+
 public class Cliente implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int idCliente;
 	private String correoCliente;
 	private String nombreCliente;
 	private String passwordCliente;
-	private List<Opinion> opinions;
 
 	public Cliente() {
 	}
 
-
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public int getIdCliente() {
 		return this.idCliente;
 	}
@@ -32,7 +36,6 @@ public class Cliente implements Serializable {
 	public void setIdCliente(int idCliente) {
 		this.idCliente = idCliente;
 	}
-
 
 	public String getCorreoCliente() {
 		return this.correoCliente;
@@ -42,7 +45,6 @@ public class Cliente implements Serializable {
 		this.correoCliente = correoCliente;
 	}
 
-
 	public String getNombreCliente() {
 		return this.nombreCliente;
 	}
@@ -51,38 +53,12 @@ public class Cliente implements Serializable {
 		this.nombreCliente = nombreCliente;
 	}
 
-
 	public String getPasswordCliente() {
 		return this.passwordCliente;
 	}
 
 	public void setPasswordCliente(String passwordCliente) {
 		this.passwordCliente = passwordCliente;
-	}
-
-
-	//bi-directional many-to-one association to Opinion
-	@OneToMany(mappedBy="cliente")
-	public List<Opinion> getOpinions() {
-		return this.opinions;
-	}
-
-	public void setOpinions(List<Opinion> opinions) {
-		this.opinions = opinions;
-	}
-
-	public Opinion addOpinion(Opinion opinion) {
-		getOpinions().add(opinion);
-		opinion.setCliente(this);
-
-		return opinion;
-	}
-
-	public Opinion removeOpinion(Opinion opinion) {
-		getOpinions().remove(opinion);
-		opinion.setCliente(null);
-
-		return opinion;
 	}
 
 }

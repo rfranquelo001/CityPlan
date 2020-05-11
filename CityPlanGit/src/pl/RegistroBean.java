@@ -1,9 +1,10 @@
 package pl;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import bl.ClaseEJB;
@@ -11,56 +12,87 @@ import dl.Cliente;
 import dl.Comerciante;
 
 @Named // Acceso al bean utilizando su nombre: registroBean
-@RequestScoped // Se crea una vez para cada petición HTTP
-public class RegistroBean {
+@ViewScoped // Se crea una vez para cada petición HTTP
+public class RegistroBean implements Serializable {
 
 	// Recoge los datos de login.xhtml a partir de usuarioBean comprueba el
 	// tipoUsuario y guarda en la BBDD un nuevo cliente o nuevo comerciante
 
-	private String tipoUsuario;
-	private String nombreUsuario;
-	private String correo;
-	private String password;
-
-	@EJB
-	private ClaseEJB ejb;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private List<Cliente> clientes;
 	private List<Comerciante> comerciantes;
-	private Cliente cliente;
-	private Comerciante comerciante;
-	private boolean registrado;
+	private Cliente cliente = new Cliente();
+	private Comerciante comerciante = new Comerciante();
 
-	// Parametros del formulario de registro:
-	public String getTipoUsuario() {
-		return tipoUsuario;
+	private String tipoUsuario;
+	private boolean correcto = false;
+	private String usuario;
+	private String password;
+	private String correoUsuario;
+	private String passwordUsuario;
+	private String nombreUsuario;
+	private String asociacionUsuario;
+	private boolean registrado = false;
+	// Recoge los datos del login de login.xhtml y
+	// comprueba si son válidos( consulta BBDD)
+	@EJB
+	private ClaseEJB ejb;
+
+	// Verificar que los datos introducidos OK>>Login succesful
+	public void valida() {
+		if (tipoUsuario.equals("cliente")) {
+			correcto = (ejb.verificarCliente(usuario, password));
+			if (correcto) {
+				cliente = ejb.obtenerClienteConNombre(usuario);
+			}
+		} else {
+			correcto = ejb.verificarComerciante(usuario, password);
+			if (correcto) {
+				comerciante = ejb.obtenerComercianteConNombre(usuario);
+			}
+		}
 	}
 
-	public void setTipoUsuario(String tipoUsuario) {
-		this.tipoUsuario = tipoUsuario;
+	// Para añadir usuario, miramos el tipoUsuario y registramos como cliente o como
+	// comerciante
+	public void addUsuario() {
+		if (tipoUsuario.equals("cliente")) {
+			setRegistroCliente(nombreUsuario, correoUsuario, passwordUsuario);
+		} else {
+			setRegistroComerciante(nombreUsuario, correoUsuario, passwordUsuario, asociacionUsuario);
+		}
 	}
 
-	public String getNombreUsuario() {
-		return nombreUsuario;
+	// Registrar cliente: comprobamos que el nombre del cliente no está en la BBDD,
+	// completamos el objeto cliente con los datos recogidos y ejb añade el nuevo
+	// cliente a la BBDD
+	public void setRegistroCliente(String nombre, String correo, String contraseña) {
+
+		if (ejb.obtenerClienteConNombre(nombre) != null) {
+
+			cliente.setCorreoCliente(correo);
+			cliente.setNombreCliente(nombre);
+			cliente.setPasswordCliente(contraseña);
+
+			ejb.aniadirCliente(cliente);
+			setRegistrado(true);
+		}
 	}
 
-	public void setNombreUsuario(String nombreUsuario) {
-		this.nombreUsuario = nombreUsuario;
-	}
+	public void setRegistroComerciante(String nombre, String correo, String contraseña, String asociacionUsuario) {
+		if (ejb.obtenerComercianteConNombre(nombre) != null) {
 
-	public String getCorreo() {
-		return correo;
-	}
+			comerciante.setCorreoComerciante(correo);
+			comerciante.setNombreComerciante(nombre);
+			comerciante.setPasswordComerciante(contraseña);
+			comerciante.setAsociacion(ejb.obtenerAsociacionConCIF(asociacionUsuario));
 
-	public void setCorreo(String correo) {
-		this.correo = correo;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
+			ejb.aniadirComerciante(comerciante);
+			setRegistrado(true);
+		}
 	}
 
 	// Para poder obtener los clientes para hacer el registro
@@ -79,43 +111,20 @@ public class RegistroBean {
 		return comerciantes;
 	}
 
-	// Para añadir usuario, miramos el tipoUsuario y registramos como cliente o como
-	// comerciante
-	public void addUsuario() {
-		if (tipoUsuario.equals("cliente")) {
-
-			setRegistroCliente(nombreUsuario, correo, password);
-		} else {
-			setRegistroComerciante(nombreUsuario, correo, password);
-		}
+	public String getTipoUsuario() {
+		return tipoUsuario;
 	}
 
-	// Registrar cliente: comprobamos que el nombre del cliente no está en la BBDD,
-	// completamos el objeto cliente con los datos recogidos y ejb añade el nuevo
-	// cliente a la BBDD
-	public void setRegistroCliente(String nombre, String correo, String contraseña) {
-
-		if (ejb.obtenerClienteConNombre(nombre) != null) {
-
-			cliente.setCorreoCliente(correo);
-			cliente.setNombreCliente(nombre);
-			cliente.setPasswordCliente(contraseña);
-
-			ejb.aniadirCliente(cliente);
-			registrado = true;
-		}
+	public void setTipoUsuario(String tipoUsuario) {
+		this.tipoUsuario = tipoUsuario;
 	}
 
-	public void setRegistroComerciante(String nombre, String correo, String contraseña) {
-		if (ejb.obtenerComercianteConNombre(nombre) != null) {
+	public boolean isCorrecto() {
+		return correcto;
+	}
 
-			comerciante.setCorreoComerciante(correo);
-			comerciante.setNombreComerciante(nombre);
-			comerciante.setPasswordComerciante(contraseña);
-
-			ejb.aniadirComerciante(comerciante);
-			registrado = true;
-		}
+	public void setCorrecto(boolean correcto) {
+		this.correcto = correcto;
 	}
 
 	public boolean isRegistrado() {
@@ -124,6 +133,54 @@ public class RegistroBean {
 
 	public void setRegistrado(boolean registrado) {
 		this.registrado = registrado;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setCorreoUsuario(String correoUsuario) {
+		this.correoUsuario = correoUsuario;
+	}
+
+	public String getCorreoUsuario() {
+		return correoUsuario;
+	}
+
+	public void setPasswordUsuario(String passwordUsuario) {
+		this.passwordUsuario = passwordUsuario;
+	}
+
+	public String getPasswordUsuario() {
+		return passwordUsuario;
+	}
+
+	public void setNombreUsuario(String nombreUsuario) {
+		this.nombreUsuario = nombreUsuario;
+	}
+
+	public String getNombreUsuario() {
+		return nombreUsuario;
+	}
+
+	public void setAsociacionUsuario(String asociacionUsuario) {
+		this.asociacionUsuario = asociacionUsuario;
+	}
+
+	public String getAsociacionUsuario() {
+		return asociacionUsuario;
 	}
 
 }

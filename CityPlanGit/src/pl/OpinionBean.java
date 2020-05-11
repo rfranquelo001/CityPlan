@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
 import bl.ClaseEJB;
@@ -14,22 +14,15 @@ import dl.Evento;
 import dl.Opinion;
 
 @Named
-@RequestScoped
+@SessionScoped
 public class OpinionBean implements Serializable {
-	// recoge los datos de los formularios de opinion.xhtml y guarda una nueva
-	// opinion en la BBDD
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@EJB
 	private ClaseEJB ejb;
 	private Opinion opinion = new Opinion();
-	private List<Opinion> listadoOpiniones = null;
-	// para tener la lista de opiniones para mostrar en
-	// detalleEvento.xhtml
+	private List<Opinion> listadoOpiniones;
 	private int idOpinion;
 	private float p1, p2, p3, p4, p5, p6, p7, p8;
 	private String textoOpinion;
@@ -108,12 +101,9 @@ public class OpinionBean implements Serializable {
 		return textoOpinion;
 	}
 
-	public void setTextoOpinion() {
-
-		opinion.setTextoOpinion(textoOpinion);
-		ejb.aniadirOpinion(opinion);
+	public void setTextoOpinion(String textoOpinion) {
+		this.textoOpinion = textoOpinion;
 	}
-	//////////////////////////////////////////////////////
 
 	public Opinion getOpinion() {
 		return opinion;
@@ -136,14 +126,29 @@ public class OpinionBean implements Serializable {
 		return valoracion;
 	}
 
-	// pasar datos a la Logica de negocio para que calcule la valoracion del evento
-	public void setValoracion() {
-
+	public void setValoracion(Evento ev) {
 		float v = (p1 + p2 + p3 + p4 + p5 + p6 + p7 + p8) / 8;
 		valoracion = BigDecimal.valueOf(v);
 		opinion.setValoracion(valoracion);
+		setValoracionTotal(ev);
 		ejb.aniadirOpinion(opinion);
+	}
 
+	public void setValoracionTotal(Evento ev) {
+		listadoOpiniones = ejb.getOpinionesEvento(ev);
+		int numOpiniones = listadoOpiniones.size();
+		int i = 0;
+		BigDecimal vF, vC; // valoracion Final valoracion Current
+		vF = BigDecimal.ZERO;
+		vC = BigDecimal.ZERO;
+		for (i = 0; i < numOpiniones; i++) {
+			vC = listadoOpiniones.get(i).getValoracion();
+			vF.add(vC);
+		}
+		if (!vF.equals(BigDecimal.ZERO)) {
+			valoracion = vF.divide(BigDecimal.valueOf(numOpiniones));
+			evento.setValoracionTotal(valoracion);
+		}
 	}
 
 	public Cliente getCliente() {
@@ -162,9 +167,7 @@ public class OpinionBean implements Serializable {
 		this.evento = evento;
 	}
 
-	public List<Opinion> getListadoOpiniones(String ev) {
-		// Paso el nombre del evento para que el ejb busque en la BBDD las opiniones a
-		// partir del nombre
+	public List<Opinion> getListadoOpiniones(Evento ev) {
 		listadoOpiniones = ejb.getOpinionesEvento(ev);
 		return listadoOpiniones;
 	}
@@ -179,6 +182,13 @@ public class OpinionBean implements Serializable {
 
 	public void setHayOpinion(boolean hayOpinion) {
 		this.hayOpinion = hayOpinion;
+	}
+
+	public void aniadirOpinion(Cliente cliente, String textoOpinion, BigDecimal valoracion) {
+		opinion.setCliente(cliente);
+		opinion.setTextoOpinion(textoOpinion);
+		opinion.setValoracion(valoracion);
+		ejb.aniadirOpinion(opinion);
 	}
 
 }

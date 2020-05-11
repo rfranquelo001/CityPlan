@@ -6,8 +6,8 @@
 
 <ui:composition template="/WEB-INF/templates/layout.xhtml">
 	<ui:define name="estilo">
-		<link rel="stylesheet" type="text/css" href="/estiloCityPlan.css" />
-		<link rel="stylesheet" type="text/css" href="/estiloAgenda.css" />
+		<link rel="stylesheet" type="text/css" href="estiloCityPlan.css" />
+		<link rel="stylesheet" type="text/css" href="estiloAgenda.css" />
 	</ui:define>
 	<ui:define name="NombrePagina">CityPlan: Agenda</ui:define>
 	<ui:define name="Contenido">
@@ -15,7 +15,12 @@
 			<!-- Tabla agenda-->
 			<div class='agenda'>
 			<h:form>
-				<h:dataTable value="#{agendaBean.getListaEventos()}" var="evento" class='evento' border="1">
+				<h:dataTable value="#{agendaBean.listaEventos}" var="evento" class='evento' border="1">
+					<h:column>
+					<f:facet name = "header" class='imagen'>Imagen</f:facet> 
+							<img src="prueba.jpeg" height="80em"
+							width="160em"/>
+					</h:column>
 					<h:column>
 					<f:facet name = "header" class='dia'>Fecha</f:facet> 
 						<h:outputText value="#{evento.fechaEvento}"/>
@@ -25,6 +30,11 @@
 						<h:outputText value="#{evento.nombreEvento}"/>
 					</h:column>
 					<!-- COMO MEJORA PONER COLUMNA CON LA IMAGEN DEL EVENTO (HAY QUE MIRARLO, CON LA URL) -->
+					<h:column>
+					<h:outputLink value="evento.xhtml">Más información
+						<f:param name="nombreEvento" value="#{evento.nombreEvento}" />
+					</h:outputLink>
+				</h:column>
 				</h:dataTable>
 			</h:form>
 			</div>

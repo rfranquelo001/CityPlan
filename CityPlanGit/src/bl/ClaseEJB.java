@@ -22,22 +22,24 @@ import dl.Opinion;
 public class ClaseEJB implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private boolean errorCliente = false;
+
 	@PersistenceContext
 	private EntityManager em;
 
 	// EVENTOS
-	// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// Obtener la lista de eventos
 	public List<Evento> getEventos() {
 		return em.createNamedQuery("Evento.findAll", Evento.class).getResultList();
 	}
 
-	// Evento tiene un comerciante, uno o muchos filtros, una o muchas opiniones
-	// No se si así funcionará, pero hay que pasarle el idComerciante
-	public void aniadirEvento(Evento ev, int idComerciante) {
-		Comerciante com = em.find(Comerciante.class, idComerciante);
-		ev.setComerciante(com);
-		em.persist(ev);
-		System.out.println("Evento dado de alta:\n\t " + ev.getDescripcionEvento() + "\n\t" + ev.getIdEvento());
+	// Añadir un evento concreto
+	public void aniadirEvento(Evento evento, int idComerciante, int idFiltro) {
+		Comerciante comerciante = em.find(Comerciante.class, idComerciante);
+		Filtro filtro = em.find(Filtro.class, idFiltro);
+		evento.setComerciante(comerciante);
+		evento.setFiltro(filtro);
+		em.persist(evento);
 	}
 
 	public void eliminarEvento(int idEvento) {
@@ -45,11 +47,19 @@ public class ClaseEJB implements Serializable {
 		em.remove(ev);
 	}
 
-	public Evento getEvento(String nombreEvento) {
-		Evento ev = new Evento();
-		ev = (Evento) em.createNamedQuery("Evento.findEvento");
+	public Evento obtenerEventoPorNombreEJB(String nombreEvento) {
+		// em.clear();
+		// Evento ev = em.createNamedQuery("Evento.findEventoPorNombre", Evento.class)
+		// .setParameter("nombreEvento", nombreEvento).getSingleResult();
+		List<Evento> lista = (List<Evento>) em.createNamedQuery("Evento.findAll", Evento.class).getResultList();
+		Evento ev = lista.get(0);
 		return ev;
 	}
+	/*
+	 * public Evento getEventoPorNombre(String nombreEvento) { return
+	 * em.createNamedQuery("Evento.findEventoPorNombre",
+	 * Evento.class).getSingleResult(); }
+	 */
 
 	// CLIENTES
 	// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -84,8 +94,7 @@ public class ClaseEJB implements Serializable {
 	}
 
 	public Cliente obtenerClienteConNombre(String nombre) {
-		Cliente c = em.find(Cliente.class, nombre);
-		return c;
+		return em.createNamedQuery("Cliente.findClienteConNombre", Cliente.class).getSingleResult();
 	}
 
 	// Para verificar que el nombre y contraseña del LOGIN son correctos
@@ -120,8 +129,7 @@ public class ClaseEJB implements Serializable {
 	}
 
 	public Comerciante obtenerComercianteConNombre(String nombre) {
-		Comerciante com = em.find(Comerciante.class, nombre);
-		return com;
+		return em.createNamedQuery("Comerciante.findComercianteConNombre", Comerciante.class).getSingleResult();
 	}
 
 	// Para verificar que el nombre y contraseña del LOGIN son correctos
@@ -154,6 +162,10 @@ public class ClaseEJB implements Serializable {
 		em.remove(as);
 	}
 
+	public Asociacion obtenerAsociacionConCIF(String cif) {
+		return em.createNamedQuery("Asociacion.findAsociacionConCIF", Asociacion.class).getSingleResult();
+	}
+
 	// FILTROS
 	// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -174,6 +186,11 @@ public class ClaseEJB implements Serializable {
 		em.remove(f);
 	}
 
+	public Filtro getFiltroPorNombre(String nombreFiltro) {
+		Filtro f = em.createNamedQuery("Filtro.findPorNombre", Filtro.class).getSingleResult();
+		return f;
+	}
+
 	// OPINIONES
 	// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -186,7 +203,6 @@ public class ClaseEJB implements Serializable {
 
 	public void aniadirOpinion(Opinion o) {
 		em.persist(o);
-		System.out.println("Opinion dada de alta:\n\t " + o.getTextoOpinion() + "\n\t" + o.getIdOpinion());
 	}
 
 	public void eliminarOpinion(int idOpinion) {
@@ -194,17 +210,9 @@ public class ClaseEJB implements Serializable {
 		em.remove(o);
 	}
 
-	public float getValoracionBD() {
-
-		Valoracion val = (Valoracion) em.createNamedQuery("Opinion.Valoracion");
-		float valoracionBD = val.getTotalValoracion();
-		return valoracionBD;
-	}
-
-	public List<Opinion> getOpinionesEvento(String evento) {
-		// no estoy segura de que la query esté bien si lo que quiero es el listado de
-		// todas las opiniones sobre el mismo evento
-		return (List<Opinion>) em.createNamedQuery("Opinion.findOpinionEvento").getResultList();
+	public List<Opinion> getOpinionesEvento(Evento evento) {
+		return em.createNamedQuery("Opinion.findOpinionEvento", Opinion.class)
+				.setParameter("idEvento", evento.getIdEvento()).getResultList();
 	}
 
 }
